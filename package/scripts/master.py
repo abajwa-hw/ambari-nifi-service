@@ -27,7 +27,7 @@ class Master(Script):
 
             
     #create the log dir if it not already present
-    Directory([params.nifi_pid_dir, params.nifi_log_dir, params.nifi_dir],
+    Directory([params.nifi_pid_dir, params.nifi_log_dir],
             owner=params.nifi_user,
             group=params.nifi_group,
             recursive=True
@@ -35,8 +35,8 @@ class Master(Script):
          
     Execute('touch ' +  params.nifi_log_file, user=params.nifi_user)    
     Execute('rm -rf ' + params.nifi_dir, ignore_failures=True)
-    #Execute('mkdir '+params.nifi_dir)
-    #Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_dir)
+    Execute('mkdir -p '+params.nifi_dir)
+    Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_dir)
     
     #User selected option to use prebuilt nifi package 
     if params.setup_prebuilt:
