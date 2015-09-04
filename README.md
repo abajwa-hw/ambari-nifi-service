@@ -27,24 +27,24 @@ ssh root@sandbox.hortonworks.com
 
 - To download the NiFi service folder, run below
 ```
-cd /var/lib/ambari-server/resources/stacks/HDP/2.2/services
-git clone https://github.com/abajwa-hw/NiFi-stack.git   
+VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/NIFI   
 ```
-
-- To customize the default users/groups, you can copy the base.ldif/groups.ldif/users.ldif files from ```/var/lib/ambari-server/resources/stacks/HDP/2.2/services/NiFi-stack/package/scripts``` dir of ambari server into any dir (e.g. /root) and make your changes (e.g. replace ali user with tom user). In Ambari add services wizard below when you get to configuration page, just point ldap.ldifdir property to this directory. 
 
 - Restart Ambari
 ```
+#sandbox
+service ambari restart
+
+#non sandbox
 sudo service ambari-server restart
 ```
 
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 
 On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next -> Change any config you like (e.g. port) -> Next -> Deploy
-![Image](../master/screenshots/screenshot-vnc-config.png?raw=true)
 
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
-![Image](../master/screenshots/screenshot-vnc-stack.png?raw=true)
 
 - When you've completed the install process, NiFi server will appear in Ambari 
 ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
