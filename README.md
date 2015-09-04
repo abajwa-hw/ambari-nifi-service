@@ -1,6 +1,13 @@
 #### An Ambari Service for NiFi
 Ambari service for easily installing and managing NiFi on HDP cluster
 
+Features:
+
+- By default, downloads a prebuilt version of 0.3.0 (to get around the Solr issue)
+- But also gives option to build Nifi from source instead
+- Exposes nifi.properties in Ambari UI (so you can configure port etc)
+- Runs the service as nifi user
+
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
 #### Setup
