@@ -27,7 +27,7 @@
     <name>nifi_log_dir</name>
     <value>/var/log</value>    
     <!-- <value>{{nifi_dir}}/logs</value> -->
-    <description>Zeppelin Log dir</description>
+    <description>NiFi Log dir</description>
   </property> 
 
   
