@@ -98,4 +98,5 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
    - Clear LDAP dir to reset the data in LDAP
     ```
     rm -rf /opt/nifi*
+    rm /tmp/nifi-0.3.0-SNAPSHOT-bin.zip
     ```   
