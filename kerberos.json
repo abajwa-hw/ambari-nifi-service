@@ -1,0 +1,17 @@
+{
+  "services": [
+    {
+      "name": "NIFI",
+      "identities": [
+        {
+          "name": "/smokeuser"
+        }
+      ],
+      "components": [
+        {
+          "name": "NIFI_MASTER"
+        }
+      ]
+    }
+  ]
+}

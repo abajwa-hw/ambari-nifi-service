@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <!-- params for service -->
+
+  <property>
+    <name>nifi.install_dir</name>
+    <value>/opt</value>
+    <description>Local dir where to install component. NiFi folder will be created as a subdir of this dir e.g. /opt/nifi-0.3.0-SNAPSHOT</description>
+  </property> 
+  
+  <property>
+    <name>nifi.port</name>
+    <value>9090</value>
+    <description>Port NiFi runs on</description>
+  </property>
+
+  <property>
+    <name>nifi.setup_prebuilt</name>
+    <value>true</value>
+    <description>If false, latest Nifi will be built from source</description>
+  </property>
+  
+  
+    
+</configuration>  

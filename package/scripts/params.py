@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+from resource_management import *
+from resource_management.libraries.script.script import Script
+import sys, os
+from resource_management.libraries.functions.version import format_hdp_stack_version
+from resource_management.libraries.functions.default import default
+
+
+    
+# server configurations
+config = Script.get_config()
+
+nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
+
+# params from nifi-ambari-config
+nifi_install_dir = config['configurations']['nifi-ambari-config']['nifi.install_dir']
+nifi_port = config['configurations']['nifi-ambari-config']['nifi.port']
+setup_prebuilt = config['configurations']['nifi-ambari-config']['nifi.setup_prebuilt']
+
+nifi_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) 
+conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
+bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
+
+
+# params from nifi-env
+nifi_user= config['configurations']['nifi-env']['nifi_user']
+nifi_group= config['configurations']['nifi-env']['nifi_group']
+nifi_log_dir = config['configurations']['nifi-env']['nifi_log_dir']
+nifi_pid_dir = config['configurations']['nifi-env']['nifi_pid_dir']
+
+nifi_log_dir = nifi_log_dir.replace('{{nifi_dir}}',nifi_dir)
+nifi_pid_dir = nifi_pid_dir.replace('{{nifi_dir}}',nifi_dir)
+
+nifi_log_file = os.path.join(nifi_log_dir,'nifi-setup.log')
+  
+#nifi-env.sh
+nifi_env_content = config['configurations']['nifi-env']['content']
+
+temp_file='/tmp/nifi-0.3.0-SNAPSHOT-bin.zip'

@@ -1,0 +1,36 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository/>
+  <interactiveMode/>
+  <usePluginRegistry/>
+  <offline/>
+  <pluginGroups/>
+  <servers/>
+  <proxies/>
+
+  <profiles>
+    <profile>
+      <id>hwx</id>
+      <repositories>
+        <repository>
+          <id>hwx</id>
+          <name>hwx</name>
+          <url>http://nexus-private.hortonworks.com/nexus/content/groups/public/</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+
+  <mirrors>
+    <mirror>
+      <id>public</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://nexus-private.hortonworks.com/nexus/content/groups/public/</url>
+    </mirror>
+  </mirrors>
+
+  <activeProfiles/>
+</settings>
