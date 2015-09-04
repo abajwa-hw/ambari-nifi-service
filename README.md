@@ -64,7 +64,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 
 
 
-#### Browse users
+#### Open NiFi webapp
 
 - The NiFi webUI login page should come up at the below link: 
 http://sandbox.hortonworks.com:9090/nifi
