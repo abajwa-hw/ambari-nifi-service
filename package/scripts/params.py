@@ -18,8 +18,12 @@ nifi_port = config['configurations']['nifi-ambari-config']['nifi.port']
 setup_prebuilt = config['configurations']['nifi-ambari-config']['nifi.setup_prebuilt']
 
 nifi_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) 
-conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
-bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
+if setup_prebuilt:
+  conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
+  bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
+else:
+  conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
+  bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
 
 
 # params from nifi-env
