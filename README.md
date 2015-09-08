@@ -42,7 +42,7 @@ sudo service ambari-server restart
 
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 
-On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next -> Change any config you like (e.g. port) -> Next -> Deploy
+On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next -> Change any config you like (e.g. install dir, port, setup_prebuilt or values in nifi.properties) -> Next -> Deploy
 
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
 
