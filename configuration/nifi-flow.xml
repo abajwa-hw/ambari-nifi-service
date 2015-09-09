@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
-<configuration supports_final="false" supports_adding_forbidden="true">
+<configuration>
 
   <property>
     <name>content</name>
