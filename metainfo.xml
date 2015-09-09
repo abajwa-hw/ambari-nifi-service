@@ -13,6 +13,7 @@
                   <displayName>NiFi server</displayName>
                   <category>MASTER</category>
                   <cardinality>1</cardinality>
+                  <timelineAppid>NIFI</timelineAppid>
                   <commandScript>
                     <script>scripts/master.py</script>
                     <scriptType>PYTHON</scriptType>
@@ -36,6 +37,8 @@
         	<config-type>nifi-ambari-config</config-type>      	    
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
+            <widgetsFileName>widgets.json</widgetsFileName>
+      		<metricsFileName>metrics.json</metricsFileName>        
         </service>
     </services>
 </metainfo>
