@@ -4,7 +4,7 @@
     <services>
         <service>
             <name>NIFI</name>
-            <displayName>Apache NiFi</displayName>
+            <displayName>NiFi</displayName>
             <comment>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data.</comment>
             <version>0.0.1</version>
             <components>
@@ -34,7 +34,8 @@
               
             </osSpecifics> -->
       	    <configuration-dependencies>
-        	<config-type>nifi-ambari-config</config-type>      	    
+        	<config-type>nifi-ambari-config</config-type>      	   
+                <config-type>nifi-flow</config-type> 
       	    </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
             <widgetsFileName>widgets.json</widgetsFileName>

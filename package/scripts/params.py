@@ -39,5 +39,10 @@ nifi_log_file = os.path.join(nifi_log_dir,'nifi-setup.log')
   
 #nifi-env.sh
 nifi_env_content = config['configurations']['nifi-env']['content']
+nifi_flow_content = config['configurations']['nifi-flow']['content']
+
+#autodetect ambari server for metrics
+master_configs = config['clusterHostInfo']
+ambari_server = str(master_configs['ambari_server_host'][0])
 
 temp_file='/tmp/nifi-0.3.0-SNAPSHOT-bin.zip'

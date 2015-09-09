@@ -60,6 +60,7 @@ class Master(Script):
       #update the configs specified by user
       self.configure(env)
 
+      #Execute('wget https://www.dropbox.com/s/n82hxkeg8ri0z70/flow.xml.gz -O '+params.conf_dir+'/flow.xml.gz',user=params.nifi_user)
       
       #run setup_snapshot.sh in FIRSTLAUNCH mode
       #Execute(service_packagedir + '/scripts/setup_snapshot.sh '+params.nifi_dir+' '+params.hive_server_host+' '+params.hive_metastore_host+' '+params.hive_metastore_port+' FIRSTLAUNCH ' + params.spark_jar + ' ' + params.nifi_host + ' ' + str(params.nifi_port) + ' '+ str(params.setup_view) + ' >> ' + params.nifi_log_file, user=params.nifi_user)
@@ -89,7 +90,8 @@ class Master(Script):
       
       #update the configs specified by user
       self.configure(env)
-            
+      #Execute('wget https://www.dropbox.com/s/n82hxkeg8ri0z70/flow.xml.gz -O '+params.conf_dir+'/flow.xml.gz',user=params.nifi_user)
+      
       #if nifi installed on ambari server, copy view jar into ambari views dir
       #if params.setup_view:
       #  if params.ambari_host == params.nifi_internalhost and not os.path.exists('/var/lib/ambari-server/resources/views/nifi-view-1.0-SNAPSHOT.jar'):
@@ -115,6 +117,11 @@ class Master(Script):
     #write out nifi-env.sh
     env_content=InlineTemplate(params.nifi_env_content)
     File(format("{params.conf_dir}/nifi.properties"), content=env_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
+
+    flow_content=InlineTemplate(params.nifi_flow_content)
+    File(format("{params.conf_dir}/flow.xml"), content=flow_content, owner=params.nifi_user, group=params.nifi_group)
+    Execute(format("cd {params.conf_dir}; mv flow.xml.gz flow_$(date +%d-%m-%Y).xml.gz ;"), user=params.nifi_user, ignore_failures=True)
+    Execute(format("cd {params.conf_dir}; gzip flow.xml;"), user=params.nifi_user)
     
   def stop(self, env):
     import params
