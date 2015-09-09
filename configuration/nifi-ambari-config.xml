@@ -20,7 +20,7 @@
   <property>
     <name>nifi.setup_prebuilt</name>
     <value>true</value>
-    <description>If false, latest Nifi will be built from source</description>
+    <description>If false, latest Nifi will be built from source. Otherwise a recent prebuilt version (0.3.0-SNAPSHOT) will be downloaded</description>
   </property>
   
   

@@ -16,7 +16,7 @@ class Master(Script):
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.3/services/NIFI/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
             
-    Execute('find '+service_packagedir+' -iname "*.sh" | xargs chmod +x')
+    #Execute('find '+service_packagedir+' -iname "*.sh" | xargs chmod +x')
 
     #Create user and group if they don't exist
     self.create_linux_user(params.nifi_user, params.nifi_group)
