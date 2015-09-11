@@ -12,10 +12,14 @@ config = Script.get_config()
 
 nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
 
+  
 # params from nifi-ambari-config
 nifi_install_dir = config['configurations']['nifi-ambari-config']['nifi.install_dir']
 nifi_port = config['configurations']['nifi-ambari-config']['nifi.port']
 setup_prebuilt = config['configurations']['nifi-ambari-config']['nifi.setup_prebuilt']
+nifi_initial_mem = config['configurations']['nifi-ambari-config']['nifi.initial_mem']
+nifi_max_mem = config['configurations']['nifi-ambari-config']['nifi.max_mem']
+
 
 nifi_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) 
 if setup_prebuilt:
@@ -39,7 +43,13 @@ nifi_log_file = os.path.join(nifi_log_dir,'nifi-setup.log')
   
 #nifi-env.sh
 nifi_env_content = config['configurations']['nifi-env']['content']
+
+# params from nifi-flow
 nifi_flow_content = config['configurations']['nifi-flow']['content']
+
+# params from nifi-boostrap
+nifi_boostrap_content = config['configurations']['nifi-bootstrap']['content']
+
 
 #autodetect ambari server for metrics
 master_configs = config['clusterHostInfo']

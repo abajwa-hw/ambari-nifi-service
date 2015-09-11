@@ -18,6 +18,18 @@
   </property>
 
   <property>
+    <name>nifi.initial_mem</name>
+    <value>512m</value>
+    <description>Initial memory allocation for NiFi JVM (Xms)</description>
+  </property>
+  
+  <property>
+    <name>nifi.max_mem</name>
+    <value>512m</value>
+    <description>Max memory allocation for Nifi JVM (Xmx)</description>
+  </property>
+    
+  <property>
     <name>nifi.setup_prebuilt</name>
     <value>true</value>
     <description>If false, latest Nifi will be built from source. Otherwise a recent prebuilt version (0.3.0-SNAPSHOT) will be downloaded</description>

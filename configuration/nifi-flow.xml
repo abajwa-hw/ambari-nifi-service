@@ -5,7 +5,6 @@
 
   <property>
     <name>content</name>
-    <description>Template for flow.xml</description>
     <value>
 &lt;flowController&gt;
   &lt;maxTimerDrivenThreadCount&gt;10&lt;/maxTimerDrivenThreadCount&gt;
@@ -23,16 +22,16 @@
       &lt;name&gt;AmbariReportingTask&lt;/name&gt;
       &lt;comment/&gt;
       &lt;class&gt;org.apache.nifi.reporting.ambari.AmbariReportingTask&lt;/class&gt;
-      &lt;schedulingPeriod&gt;5 mins&lt;/schedulingPeriod&gt;
+      &lt;schedulingPeriod&gt;1 mins&lt;/schedulingPeriod&gt;
       &lt;scheduledState&gt;RUNNING&lt;/scheduledState&gt;
       &lt;schedulingStrategy&gt;TIMER_DRIVEN&lt;/schedulingStrategy&gt;
       &lt;property&gt;
         &lt;name&gt;Metrics Collector URL&lt;/name&gt;
-        &lt;value&gt;http://{{ambari_server}}:6188/ws/v1/timeline/metrics&lt;/value&gt;
+        &lt;value&gt;${ambari.metrics.collector.url}&lt;/value&gt;
       &lt;/property&gt;
       &lt;property&gt;
         &lt;name&gt;Application ID&lt;/name&gt;
-        &lt;value&gt;nifi&lt;/value&gt;
+        &lt;value&gt;${ambari.application.id}&lt;/value&gt;
       &lt;/property&gt;
       &lt;property&gt;
         &lt;name&gt;Hostname&lt;/name&gt;
@@ -41,8 +40,9 @@
     &lt;/reportingTask&gt;
   &lt;/reportingTasks&gt;
 &lt;/flowController&gt;
-
   </value>
+  <description>Initial template for flow.xml</description>
+  
   </property>
 
 </configuration>

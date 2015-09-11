@@ -58,7 +58,7 @@ class Master(Script):
           
       
       #update the configs specified by user
-      self.configure(env)
+      self.configure(env, True)
 
       #Execute('wget https://www.dropbox.com/s/n82hxkeg8ri0z70/flow.xml.gz -O '+params.conf_dir+'/flow.xml.gz',user=params.nifi_user)
       
@@ -89,7 +89,7 @@ class Master(Script):
       Execute('cd '+params.nifi_dir+'; mvn -T C2.0 clean install -DskipTests >> ' + params.nifi_log_file, user=params.nifi_user)
       
       #update the configs specified by user
-      self.configure(env)
+      self.configure(env, True)
       #Execute('wget https://www.dropbox.com/s/n82hxkeg8ri0z70/flow.xml.gz -O '+params.conf_dir+'/flow.xml.gz',user=params.nifi_user)
       
       #if nifi installed on ambari server, copy view jar into ambari views dir
@@ -108,20 +108,28 @@ class Master(Script):
 
   
 
-  def configure(self, env):
+  def configure(self, env, isInstall=False):
     import params
     import status_params
     env.set_params(params)
     env.set_params(status_params)
     
-    #write out nifi-env.sh
+    #write out nifi.properties
     env_content=InlineTemplate(params.nifi_env_content)
     File(format("{params.conf_dir}/nifi.properties"), content=env_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
 
-    flow_content=InlineTemplate(params.nifi_flow_content)
-    File(format("{params.conf_dir}/flow.xml"), content=flow_content, owner=params.nifi_user, group=params.nifi_group)
-    Execute(format("cd {params.conf_dir}; mv flow.xml.gz flow_$(date +%d-%m-%Y).xml.gz ;"), user=params.nifi_user, ignore_failures=True)
-    Execute(format("cd {params.conf_dir}; gzip flow.xml;"), user=params.nifi_user)
+    #write out flow.xml.gz only during install
+    if isInstall:
+      Execute('echo "First time setup so generating flow.xml.gz" >> ' + params.nifi_log_file)    
+      flow_content=InlineTemplate(params.nifi_flow_content)
+      File(format("{params.conf_dir}/flow.xml"), content=flow_content, owner=params.nifi_user, group=params.nifi_group)
+      Execute(format("cd {params.conf_dir}; mv flow.xml.gz flow_$(date +%d-%m-%Y).xml.gz ;"), user=params.nifi_user, ignore_failures=True)
+      Execute(format("cd {params.conf_dir}; gzip flow.xml;"), user=params.nifi_user)
+
+
+    #write out boostrap.conf
+    bootstrap_content=InlineTemplate(params.nifi_boostrap_content)
+    File(format("{params.conf_dir}/bootstrap.conf"), content=bootstrap_content, owner=params.nifi_user, group=params.nifi_group) 
     
   def stop(self, env):
     import params
