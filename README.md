@@ -52,9 +52,6 @@ On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next ->
   
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
 
-- When you've completed the install process, NiFi server will appear in Ambari 
-![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
-
 - You can see the parameters you configured under 'Configs' tab
 ![Image](../master/screenshots/screenshot-nifi-stack-config.png?raw=true)
 
@@ -84,6 +81,23 @@ http://sandbox.hortonworks.com:9090/nifi
 
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
 ![Image](../master/screenshots/screenshot-nifi-view.png?raw=true)
+
+- Create simple flow to read Tweets into HDFS
+  - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
+  - Right click on it > Configure > Properties > Add your Twitter key/secrets
+  - Drag processor to canvas and search for PutHDFS
+  - Right click on it > Configure
+    - Under Settings:
+      - check failure and success
+    - Under Properties:
+      - Hadoop Configuration Resources: `/etc/hadoop/conf/core-site.xml`
+      - Directory: `/tmp`
+  - Connect the two by dragging the circle in the center of GetTwitter box to PutHDFS box and click Add
+  - Click the Start button (green triangle near top of screen)
+
+- You should also see Nifi metrics in Ambari  
+![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
+
 
 #### Remove service
 
