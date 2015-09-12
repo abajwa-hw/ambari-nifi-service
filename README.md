@@ -3,9 +3,8 @@ Ambari service for easily installing and managing NiFi on HDP cluster and viewin
 
 Features:
 
-- By default, downloads a prebuilt version of 0.3.0 (to get around the Solr issue)
-- But also gives option to build Nifi from source instead
-- Exposes nifi.properties, bootstrap.conf in Ambari UI (so you can configure port, memory etc)
+- By default, downloads a prebuilt version of 0.3.0, but also gives option to build Nifi from source instead
+- Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
