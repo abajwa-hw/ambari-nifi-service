@@ -19,6 +19,7 @@ nifi_port = config['configurations']['nifi-ambari-config']['nifi.port']
 setup_prebuilt = config['configurations']['nifi-ambari-config']['nifi.setup_prebuilt']
 nifi_initial_mem = config['configurations']['nifi-ambari-config']['nifi.initial_mem']
 nifi_max_mem = config['configurations']['nifi-ambari-config']['nifi.max_mem']
+nifi_ambari_reporting_frequency = config['configurations']['nifi-ambari-config']['nifi.ambari_reporting_frequency']
 
 
 nifi_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) 
@@ -29,29 +30,27 @@ else:
   conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
   bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
 
-
-# params from nifi-env
-nifi_user= config['configurations']['nifi-env']['nifi_user']
-nifi_group= config['configurations']['nifi-env']['nifi_group']
-nifi_log_dir = config['configurations']['nifi-env']['nifi_log_dir']
-nifi_pid_dir = config['configurations']['nifi-env']['nifi_pid_dir']
-
-nifi_log_dir = nifi_log_dir.replace('{{nifi_dir}}',nifi_dir)
-nifi_pid_dir = nifi_pid_dir.replace('{{nifi_dir}}',nifi_dir)
-
+# params from nifi-logback
+nifi_user= config['configurations']['nifi-logback-env']['nifi_user']
+nifi_group= config['configurations']['nifi-logback-env']['nifi_group']
+nifi_log_dir = config['configurations']['nifi-logback-env']['nifi_log_dir']
+nifi_logback_content = config['configurations']['nifi-logback-env']['content']
 nifi_log_file = os.path.join(nifi_log_dir,'nifi-setup.log')
-  
-#nifi-env.sh
-nifi_env_content = config['configurations']['nifi-env']['content']
 
+# params from nifi-properties-env
+nifi_properties_content = config['configurations']['nifi-properties-env']['content']
+  
 # params from nifi-flow
-nifi_flow_content = config['configurations']['nifi-flow']['content']
+nifi_flow_content = config['configurations']['nifi-flow-env']['content']
 
 # params from nifi-boostrap
-nifi_boostrap_content = config['configurations']['nifi-bootstrap']['content']
+nifi_boostrap_content = config['configurations']['nifi-bootstrap-env']['content']
+
+
 
 
 #autodetect ambari server for metrics
+#TODO: confirm that this should point to ambari_server_host (and not metrics or collector server)
 master_configs = config['clusterHostInfo']
 ambari_server = str(master_configs['ambari_server_host'][0])
 

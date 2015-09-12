@@ -34,6 +34,14 @@
     <value>true</value>
     <description>If false, latest Nifi will be built from source. Otherwise a recent prebuilt version (0.3.0-SNAPSHOT) will be downloaded</description>
   </property>
+
+  <property>
+    <name>nifi.ambari_reporting_frequency</name>
+    <value>1 mins</value>
+    <description>Frequency with which Nifi metrics will be reported to Ambari Metrics. Only used during initial install of service. Post-install this can be reconfigured from Nifi UI under Controller Settings</description>
+  </property>
+  
+  
   
   
     

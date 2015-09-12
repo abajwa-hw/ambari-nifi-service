@@ -22,12 +22,12 @@ class Master(Script):
     self.create_linux_user(params.nifi_user, params.nifi_group)
     Execute('cp /etc/sudoers /etc/sudoers.bak')        
     Execute('echo "'+params.nifi_user+'    ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers')
-    Execute('echo Creating ' +  params.nifi_log_dir +  ' ' +  params.nifi_pid_dir)    
+    Execute('echo Creating ' +  params.nifi_log_dir +  ' ' +  status_params.nifi_pid_dir)    
 
 
             
     #create the log dir if it not already present
-    Directory([params.nifi_pid_dir, params.nifi_log_dir],
+    Directory([status_params.nifi_pid_dir, params.nifi_log_dir],
             owner=params.nifi_user,
             group=params.nifi_group,
             recursive=True
@@ -115,8 +115,8 @@ class Master(Script):
     env.set_params(status_params)
     
     #write out nifi.properties
-    env_content=InlineTemplate(params.nifi_env_content)
-    File(format("{params.conf_dir}/nifi.properties"), content=env_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
+    properties_content=InlineTemplate(params.nifi_properties_content)
+    File(format("{params.conf_dir}/nifi.properties"), content=properties_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
 
     #write out flow.xml.gz only during install
     if isInstall:
@@ -126,16 +126,21 @@ class Master(Script):
       Execute(format("cd {params.conf_dir}; mv flow.xml.gz flow_$(date +%d-%m-%Y).xml.gz ;"), user=params.nifi_user, ignore_failures=True)
       Execute(format("cd {params.conf_dir}; gzip flow.xml;"), user=params.nifi_user)
 
-
     #write out boostrap.conf
     bootstrap_content=InlineTemplate(params.nifi_boostrap_content)
     File(format("{params.conf_dir}/bootstrap.conf"), content=bootstrap_content, owner=params.nifi_user, group=params.nifi_group) 
+
+    #write out logback.xml
+    logback_content=InlineTemplate(params.nifi_logback_content)
+    File(format("{params.conf_dir}/logback.xml"), content=logback_content, owner=params.nifi_user, group=params.nifi_group) 
+    
+    
     
   def stop(self, env):
     import params
     import status_params    
     Execute (params.bin_dir+'/nifi.sh stop >> ' + params.nifi_log_file, user=params.nifi_user)
-    Execute ('rm /var/run/nifi.pid')
+    Execute ('rm ' + status_params.nifi_pid_file)
  
       
   def start(self, env):
@@ -145,11 +150,12 @@ class Master(Script):
     Execute('echo pid file ' + status_params.nifi_pid_file)
     Execute (params.bin_dir+'/nifi.sh start >> ' + params.nifi_log_file, user=params.nifi_user)
 
-    Execute("cat "+status_params.nifi_pid_file+" | grep pid | sed 's/pid=\(\.*\)/\\1/' > /var/run/nifi.pid")
-    Execute('chown '+params.nifi_user+':'+params.nifi_group+' /var/run/nifi.pid')
+    Execute('cat '+params.bin_dir+'/nifi.pid'+" | grep pid | sed 's/pid=\(\.*\)/\\1/' > " + status_params.nifi_pid_file)
+    Execute('chown '+params.nifi_user+':'+params.nifi_group+' ' + status_params.nifi_pid_file)
     
-  def status(self, env):       
-    check_process_status('/var/run/nifi.pid')
+  def status(self, env):
+    import status_params       
+    check_process_status(status_params.nifi_pid_file)
 
   def install_mvn_repo(self):
     #for centos/RHEL 6/7 maven repo needs to be installed

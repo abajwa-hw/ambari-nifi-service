@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+  <property>
+    <name>content</name>
+    <value>
+&lt;flowController&gt;
+  &lt;maxTimerDrivenThreadCount&gt;10&lt;/maxTimerDrivenThreadCount&gt;
+  &lt;maxEventDrivenThreadCount&gt;5&lt;/maxEventDrivenThreadCount&gt;
+  &lt;rootGroup&gt;
+    &lt;id&gt;7c84501d-d10c-407c-b9f3-1d80e38fe36a&lt;/id&gt;
+    &lt;name&gt;NiFi Flow&lt;/name&gt;
+    &lt;position x="0.0" y="0.0"/&gt;
+    &lt;comment/&gt;
+  &lt;/rootGroup&gt;
+  &lt;controllerServices/&gt;
+  &lt;reportingTasks&gt;
+    &lt;reportingTask&gt;
+      &lt;id&gt;3b80ba0f-a6c0-48db-b721-4dbc04cef28e&lt;/id&gt;
+      &lt;name&gt;AmbariReportingTask&lt;/name&gt;
+      &lt;comment/&gt;
+      &lt;class&gt;org.apache.nifi.reporting.ambari.AmbariReportingTask&lt;/class&gt;
+      &lt;schedulingPeriod&gt;{{nifi_ambari_reporting_frequency}}&lt;/schedulingPeriod&gt;
+      &lt;scheduledState&gt;RUNNING&lt;/scheduledState&gt;
+      &lt;schedulingStrategy&gt;TIMER_DRIVEN&lt;/schedulingStrategy&gt;
+      &lt;property&gt;
+        &lt;name&gt;Metrics Collector URL&lt;/name&gt;
+        &lt;value&gt;${ambari.metrics.collector.url}&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+        &lt;name&gt;Application ID&lt;/name&gt;
+        &lt;value&gt;${ambari.application.id}&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+        &lt;name&gt;Hostname&lt;/name&gt;
+        &lt;value&gt;${hostname(true)}&lt;/value&gt;
+      &lt;/property&gt;
+    &lt;/reportingTask&gt;
+  &lt;/reportingTasks&gt;
+&lt;/flowController&gt;
+  </value>
+  <description>Initial template for flow.xml. Only used during initial install of Nifi service. Post-install this can be reconfigured from Nifi UI under Controller Settings</description>
+  
+  </property>
+
+</configuration>
+
