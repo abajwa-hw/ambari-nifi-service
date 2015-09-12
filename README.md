@@ -1,12 +1,13 @@
 #### An Ambari Service for NiFi
-Ambari service for easily installing and managing NiFi on HDP cluster
+Ambari service for easily installing and managing NiFi on HDP cluster and viewing metrics.
 
 Features:
 
 - By default, downloads a prebuilt version of 0.3.0 (to get around the Solr issue)
 - But also gives option to build Nifi from source instead
-- Exposes nifi.properties in Ambari UI (so you can configure port etc)
-- Runs the service as nifi user
+- Exposes nifi.properties, bootstrap.conf in Ambari UI (so you can configure port, memory etc)
+- Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
+- Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
 Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 
@@ -44,6 +45,11 @@ sudo service ambari-server restart
 
 On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next -> Change any config you like (e.g. install dir, port, setup_prebuilt or values in nifi.properties) -> Next -> Deploy
 
+  - By default:
+    - Port is set to 9090
+    - Max JVM memory size is 512mb
+    - Run schedule for Nifi's Ambari reporting task is 1 min
+  
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
 
 - When you've completed the install process, NiFi server will appear in Ambari 
