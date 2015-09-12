@@ -95,7 +95,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
 #if above errors out, run below first to fully stop the service
 #curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
     ```
-   - Clear LDAP dir to reset the data in LDAP
+   - Remove artifacts
     ```
     rm -rf /opt/nifi*
     rm /tmp/nifi-0.3.0-SNAPSHOT-bin.zip
