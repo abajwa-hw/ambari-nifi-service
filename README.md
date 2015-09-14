@@ -19,11 +19,13 @@ Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
 ```
 192.168.191.241 sandbox.hortonworks.com sandbox    
 ```
-- Connect to the VM via SSH (password hadoop) and start Ambari server
+- Connect to the VM via SSH (password hadoop)
 ```
 ssh root@sandbox.hortonworks.com
-/root/start_ambari.sh
 ```
+
+- (Optional) To see Nifi metrics in Ambari, login to Ambari (admin/admin) and start Ambari Metrics service 
+http://sandbox.hortonworks.com:8080
 
 - To download the NiFi service folder, run below
 ```
@@ -97,7 +99,7 @@ http://sandbox.hortonworks.com:9090/nifi
 
 ![Image](../master/screenshots/twitter-flow.png?raw=true)
 
-- You should also see Nifi metrics in Ambari  
+- You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
 ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
 
 
