@@ -86,6 +86,7 @@ http://sandbox.hortonworks.com:9090/nifi
 - Create simple flow to read Tweets into HDFS
   - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
   - Right click on it > Configure > Properties > Add your Twitter key/secrets
+  - To filter by hashtag, enter the term under 'Terms to Filter on' and change the 'Twitter Endpoint' to 'Filter Endpoint'
   - Drag processor to canvas and search for PutHDFS
   - Right click on it > Configure
     - Under Settings:
