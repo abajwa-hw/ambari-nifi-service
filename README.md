@@ -111,7 +111,9 @@ http://sandbox.hortonworks.com:9090/nifi
   - Click the Start button (green triangle near top of screen)
   - After few seconds you will see data flowing and 
     - tweets will appear in /tmp dir of HDFS: `hadoop fs -ls /tmp/*.json`
-    - tweets will appear in Solr: http://sandbox.hortonworks.com:8984/solr/labs/select?q=*:*
+    - tweets will appear in Solr: 
+      - http://sandbox.hortonworks.com:8984/solr/labs/select?q=*:*
+      - http://sandbox.hortonworks.com:8984/solr/#/~cloud
 
 ![Image](../master/screenshots/twitter-flow.png?raw=true)
 
