@@ -84,7 +84,7 @@ http://sandbox.hortonworks.com:9090/nifi
 ![Image](../master/screenshots/screenshot-nifi-view.png?raw=true)
 
 - Create simple flow to read Tweets into HDFS (and optionally Solr). 
-  - To push tweets into Solr, follow the steps here to start [SolrCloud](https://gist.github.com/abajwa-hw/675b01c152e9fac8d3c2) and create a collection
+  - To push tweets into Solr, follow the steps [here](https://gist.github.com/abajwa-hw/675b01c152e9fac8d3c2) to start SolrCloud and create a collection
   - Capture tweets from Twitter API
     - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
     - Right click on it > Configure > Properties > Add your Twitter key/secrets
