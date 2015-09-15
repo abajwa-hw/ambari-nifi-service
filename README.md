@@ -108,14 +108,17 @@ http://sandbox.hortonworks.com:9090/nifi
         - Solr Location: sandbox.hortonworks.com:2181
         - Collection: labs  
       - Connect the two by dragging the circle in the center of GetTwitter box to PutSolrContentStream box and click Add  
-  - Click the Start button (green triangle near top of screen)
+
+  - If setup correctly, the top left hand of each processor on the canvas will show a red square (indicating the flow is stopped)
+![Image](../master/screenshots/twitter-flow.png?raw=true)
+
+  - Click the Start button (green triangle near top of screen) to start the flow
   - After few seconds you will see data flowing and 
     - tweets will appear in /tmp dir of HDFS: `hadoop fs -ls /tmp/*.json`
     - tweets will appear in Solr: 
       - http://sandbox.hortonworks.com:8984/solr/labs/select?q=*:*
       - http://sandbox.hortonworks.com:8984/solr/#/~cloud
 
-![Image](../master/screenshots/twitter-flow.png?raw=true)
 
 - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
 ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
