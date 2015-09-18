@@ -162,10 +162,10 @@ http://sandbox.hortonworks.com:9090/nifi
     ![Image](../master/screenshots/provenance-graph1.png?raw=true)    
     - Right click Send > View details > Content
     ![Image](../master/screenshots/provenance-event.png?raw=true)    
-    - You can also view the tweet itself by
+    - From here you can view the tweet itself by
       - Clicking Content > View > formatted
       ![Image](../master/screenshots/tweet.png?raw=true)
-    - Note you can replay the event by 
+    - You can also replay the event by 
       - Replay > Submit      
     - Close the provenance window using x icon *on the inner window*
     - Notice the event was replayed
