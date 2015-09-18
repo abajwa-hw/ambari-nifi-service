@@ -156,7 +156,7 @@ http://sandbox.hortonworks.com:9090/nifi
     ![Image](../master/screenshots/Solr-query.png?raw=true)  
 
   - Data provenance:
-    - In Nifi click Provenance icon (5th icon from top right corner)
+    - In Nifi home screen, click Provenance icon (5th icon from top right corner) to open Provenance page:
     ![Image](../master/screenshots/provenance-list-1.png?raw=true)
     - Click Show lineage icon (2nd icon from right) on any row
     ![Image](../master/screenshots/provenance-graph1.png?raw=true)    
