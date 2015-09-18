@@ -8,8 +8,10 @@ Features:
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
-Author: [Ali Bajwa](https://www.linkedin.com/in/aliabajwa)
-
+Authors: 
+  - [Ali Bajwa](https://github.com/abajwa-hw): Nifi Install/start/stop via Ambari
+  - [Bryan Bende](https://github.com/bbende): Ambari metrics integration
+  
 #### Setup
 
 - Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
