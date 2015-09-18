@@ -86,7 +86,7 @@ http://sandbox.hortonworks.com:9090/nifi
 ![Image](../master/screenshots/screenshot-nifi-view.png?raw=true)
 
 - Create simple flow to read Tweets into HDFS and Solr. 
-  - Pre-requisiste 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
+  - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
   ```
   su solr
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
@@ -103,7 +103,7 @@ http://sandbox.hortonworks.com:9090/nifi
   sudo -u hdfs hadoop fs -mkdir /user/solr
   sudo -u hdfs hadoop fs -chown solr /user/solr
   ```    
-  - Pre-requisiste 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
+  - Pre-requisite 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
   service ntpd stop
   ntpdate pool.ntp.org
