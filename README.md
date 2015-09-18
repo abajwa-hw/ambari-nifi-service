@@ -98,6 +98,7 @@ http://sandbox.hortonworks.com:9090/nifi
   ```  
   
     - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch
+    
   ```
   yum install -y lucidworks-hdpsearch
   sudo -u hdfs hadoop fs -mkdir /user/solr
