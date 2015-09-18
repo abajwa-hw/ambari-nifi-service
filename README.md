@@ -155,7 +155,25 @@ http://sandbox.hortonworks.com:9090/nifi
       - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
     ![Image](../master/screenshots/Solr-query.png?raw=true)  
 
-
+  - Data provenance:
+    - In Nifi click Provenance icon (5th icon from top right corner)
+    ![Image](../master/screenshots/provenance-list-1.png?raw=true)
+    - Click Show lineage icon (2nd icon from right) on any row
+    ![Image](../master/screenshots/provenance-graph1.png?raw=true)    
+    - Right click Send > View details > Content
+    ![Image](../master/screenshots/provenance-event.png?raw=true)    
+    - You can also view the tweet itself by
+      - Clicking Content > View > formatted
+      ![Image](../master/screenshots/tweet.png?raw=true)
+    - Note you can replay the event by 
+      - Replay > Submit      
+    - Close the provenance window using x icon *on the inner window*
+    - Notice the event was replayed
+    ![Image](../master/screenshots/provenance-list-2.png?raw=true)
+    - Re-open the the provenance window on the row you you had originally selected
+    ![Image](../master/screenshots/provenance-graph2.png?raw=true)
+    - Notice that by viewing the tweet, you changed the provenance graph of this event
+    
 - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
 ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
 
