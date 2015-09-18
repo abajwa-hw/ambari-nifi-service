@@ -111,11 +111,15 @@ http://sandbox.hortonworks.com:9090/nifi
   ```  
   - Now open Nifi webui and run the remaining steps there:    
   - Capture tweets from Twitter API
-    - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
-    - Right click on it > Configure > Properties > Add your Twitter key/secrets
-    - To filter by hashtags:
-      - change the 'Twitter Endpoint' to 'Filter Endpoint'
-      - enter the search terms (e.g. hortonworks,hadoop) under 'Terms to Filter on'  
+    - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter and click Add to add to canvas.
+    - Right click on it > Configure
+      - Under Settings:
+        - check failure and success 
+      - Under Properties:
+        - Add your Twitter key/secrets
+        - change the 'Twitter Endpoint' to 'Filter Endpoint'
+        - enter the search terms (e.g. hortonworks,hadoop) under 'Terms to Filter on'  
+        
   - Write tweets to HDFS    
     - Drag processor to canvas and search for PutHDFS
     - Right click on it > Configure
@@ -124,7 +128,10 @@ http://sandbox.hortonworks.com:9090/nifi
       - Under Properties:
         - Hadoop Configuration Resources: `/etc/hadoop/conf/core-site.xml`
         - Directory: `/tmp`
-    - Connect the two by dragging the circle in the center of GetTwitter box to PutHDFS box and click Add
+        
+  - Connect the two processors:
+    - By dragging the circle in the center of GetTwitter box to PutHDFS box and click Add to add to canvas.
+    
   - Write tweets to Solr
     - Drag procesor to canvas and search for PutSolrContentStream
     - Right click on it > Configure
