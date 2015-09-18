@@ -10,8 +10,10 @@ class Master(Script):
       
 
     #location of prebuilt package from 9/3   
-    snapshot_package='https://www.dropbox.com/s/la1c25xq9zd8w5g/nifi-0.3.0-SNAPSHOT-bin.zip'
-
+    #snapshot_package='https://www.dropbox.com/s/la1c25xq9zd8w5g/nifi-0.3.0-SNAPSHOT-bin.zip'
+    
+    #official 0.3
+    snapshot_package='http://apache.arvixe.com/nifi/0.3.0/nifi-0.3.0-bin.zip'
         
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.3/services/NIFI/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 

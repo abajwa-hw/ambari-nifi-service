@@ -3,7 +3,7 @@ Ambari service for easily installing and managing NiFi on HDP cluster and viewin
 
 Features:
 
-- By default, downloads a prebuilt version of 0.3.0, but also gives option to build Nifi from source instead
+- By default, downloads the GA version Nifi 0.3.0, but also gives option to build the latest Nifi from source instead
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
@@ -140,17 +140,18 @@ http://sandbox.hortonworks.com:9090/nifi
       - Under Properties:
         - Solr Type: Cloud
         - Solr Location: sandbox.hortonworks.com:2181
-        - Collection: labs  
+        - Collection: tweets  
       - Connect the two by dragging the circle in the center of GetTwitter box to PutSolrContentStream box and click Add  
 
   - If setup correctly, the top left hand of each processor on the canvas will show a red square (indicating the flow is stopped)
-![Image](../master/screenshots/twitter-flow.png?raw=true)
 
   - Click the Start button (green triangle near top of screen) to start the flow
-  - After few seconds you will see data flowing and 
-    - tweets will appear under /tmp dir in HDFS. You can see this via Files view in Ambari:
+  - After few seconds you will see data flowing
+ ![Image](../master/screenshots/twitter-flow.png?raw=true)
+  - Verify that: 
+    - tweets appear under /tmp dir in HDFS. You can see this via Files view in Ambari:
     ![Image](../master/screenshots/Files-view.png?raw=true) 
-    - tweets will appear in Solr: 
+    - tweets appear in Solr: 
       - http://sandbox.hortonworks.com:8983/solr/tweets_shard1_replica1/select?q=*:*
       - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
     ![Image](../master/screenshots/Solr-query.png?raw=true)  

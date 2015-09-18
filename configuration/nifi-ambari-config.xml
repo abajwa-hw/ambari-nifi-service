@@ -8,7 +8,7 @@
   <property>
     <name>nifi.install_dir</name>
     <value>/opt</value>
-    <description>Local dir where to install component. NiFi folder will be created as a subdir of this dir e.g. /opt/nifi-0.3.0-SNAPSHOT</description>
+    <description>Local dir where to install component. NiFi folder will be created as a subdir of this dir e.g. /opt/nifi-0.3.0</description>
   </property> 
   
   <property>
@@ -32,7 +32,7 @@
   <property>
     <name>nifi.setup_prebuilt</name>
     <value>true</value>
-    <description>If false, latest Nifi will be built from source. Otherwise a recent prebuilt version (0.3.0-SNAPSHOT) will be downloaded</description>
+    <description>If false, latest Nifi will be built from source. Otherwise a prebuilt version of 0.3.0 will be downloaded</description>
   </property>
 
   <property>
