@@ -155,7 +155,14 @@ http://sandbox.hortonworks.com:9090/nifi
       - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
     ![Image](../master/screenshots/Solr-query.png?raw=true)  
 
-  - Data provenance:
+  - Flow statistics/graphs:
+    - Right click on one of the processors (e.g. PutHDFS) and select click 'Stats' to see a number of charts/metrics:
+    ![Image](../master/screenshots/nifi-stats.png?raw=true)
+    
+    - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
+    ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
+
+  - Data provenance in Nifi:
     - In Nifi home screen, click Provenance icon (5th icon from top right corner) to open Provenance page:
     ![Image](../master/screenshots/provenance-list-1.png?raw=true)
     - Click Show lineage icon (2nd icon from right) on any row
@@ -172,10 +179,13 @@ http://sandbox.hortonworks.com:9090/nifi
     ![Image](../master/screenshots/provenance-list-2.png?raw=true)
     - Re-open the the provenance window on the row you you had originally selected
     ![Image](../master/screenshots/provenance-graph2.png?raw=true)
-    - Notice that by viewing the tweet, you changed the provenance graph of this event: there are additional Send events
+    - Notice that by viewing and replaying the tweet, you changed the provenance graph of this event: Send and replay events were added to the lineage graph
+    - Right click on the Send event near the bottom of the flow and select Details
+    ![Image](../master/screenshots/viewtweet-eventdetails.png?raw=true)
+    - Notice that the details of request to view the tweet are captured here (who requested it, at what time etc)
+    - Exit the Provenance window but clicking the x icon *on the outer window*
     
-- You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
-![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
+
 
 
 #### Remove service
