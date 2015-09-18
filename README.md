@@ -87,27 +87,27 @@ http://sandbox.hortonworks.com:9090/nifi
 
 - Create simple flow to read Tweets into HDFS and Solr. 
   - Pre-requisiste 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
-```
-su solr
-/opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
+  ```
+  su solr
+  /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
 
-/opt/lucidworks-hdpsearch/solr/bin/solr create -c tweets \
+  /opt/lucidworks-hdpsearch/solr/bin/solr create -c tweets \
      -d data_driven_schema_configs \
      -s 1 \
      -rf 1 
-```  
+  ```  
     - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch
-```
-yum install -y lucidworks-hdpsearch
-sudo -u hdfs hadoop fs -mkdir /user/solr
-sudo -u hdfs hadoop fs -chown solr /user/solr
-```    
+  ```
+  yum install -y lucidworks-hdpsearch
+  sudo -u hdfs hadoop fs -mkdir /user/solr
+  sudo -u hdfs hadoop fs -chown solr /user/solr
+  ```    
   - Pre-requisiste 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
-```
-service ntpd stop
-ntpdate pool.ntp.org
-service ntpd start
-```  
+  ```
+  service ntpd stop
+  ntpdate pool.ntp.org
+  service ntpd start
+  ```  
   - Now open Nifi webui and run the remaining steps there:    
   - Capture tweets from Twitter API
     - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
