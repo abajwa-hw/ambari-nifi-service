@@ -172,7 +172,7 @@ http://sandbox.hortonworks.com:9090/nifi
     ![Image](../master/screenshots/provenance-list-2.png?raw=true)
     - Re-open the the provenance window on the row you you had originally selected
     ![Image](../master/screenshots/provenance-graph2.png?raw=true)
-    - Notice that by viewing the tweet, you changed the provenance graph of this event
+    - Notice that by viewing the tweet, you changed the provenance graph of this event: there are additional Send events
     
 - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
 ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
