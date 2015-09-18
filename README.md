@@ -112,7 +112,9 @@ service ntpd start
   - Capture tweets from Twitter API
     - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter
     - Right click on it > Configure > Properties > Add your Twitter key/secrets
-    - To filter by hashtag, enter the search term (e.g. #hadoop) under 'Terms to Filter on' and change the 'Twitter Endpoint' to 'Filter Endpoint'
+    - To filter by hashtags:
+      - change the 'Twitter Endpoint' to 'Filter Endpoint'
+      - enter the search terms (e.g. hortonworks,hadoop) under 'Terms to Filter on'  
   - Write tweets to HDFS    
     - Drag processor to canvas and search for PutHDFS
     - Right click on it > Configure
@@ -138,10 +140,12 @@ service ntpd start
 
   - Click the Start button (green triangle near top of screen) to start the flow
   - After few seconds you will see data flowing and 
-    - tweets will appear in /tmp dir of HDFS: `hadoop fs -ls /tmp/*.json`
+    - tweets will appear under /tmp dir in HDFS. You can see this via Files view in Ambari:
+    ![Image](../master/screenshots/Files-view.png?raw=true) 
     - tweets will appear in Solr: 
-      - http://sandbox.hortonworks.com:8984/solr/labs/select?q=*:*
-      - http://sandbox.hortonworks.com:8984/solr/#/~cloud
+      - http://sandbox.hortonworks.com:8983/solr/tweets_shard1_replica1/select?q=*:*
+      - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
+    ![Image](../master/screenshots/Solr-query.png?raw=true)  
 
 
 - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
