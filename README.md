@@ -77,7 +77,7 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 
 - ...and also install via Blueprint. See example [here](https://github.com/abajwa-hw/ambari-workshops/blob/master/blueprints-demo-security.md) on how to deploy custom services via Blueprints
 
-#### Open NiFi webapp
+#### Use NiFi
 
 - The NiFi webUI login page should come up at the below link: 
 http://sandbox.hortonworks.com:9090/nifi
