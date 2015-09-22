@@ -88,6 +88,7 @@ http://sandbox.hortonworks.com:9090/nifi
 - Create simple flow to read Tweets into HDFS and Solr. 
   - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
   ```
+  chown -R solr:solr /opt/lucidworks-hdpsearch/solr  #current sandbox version has files owned by root here which causes problems
   su solr
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
 
