@@ -98,12 +98,14 @@ http://sandbox.hortonworks.com:9090/nifi
      -rf 1 
   ```  
   
-    - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch
+    - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch first
+    
   ```
   yum install -y lucidworks-hdpsearch
   sudo -u hdfs hadoop fs -mkdir /user/solr
   sudo -u hdfs hadoop fs -chown solr /user/solr
   ```    
+  
   - Pre-requisite 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
   service ntpd stop
