@@ -82,6 +82,8 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 - The NiFi webUI login page should come up at the below link: 
 http://sandbox.hortonworks.com:9090/nifi
 
+  - On VirtualBox you will need to manually forward port 9090 before you can do this. This is not required on VMWare
+  
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
 ![Image](../master/screenshots/screenshot-nifi-view.png?raw=true)
 
