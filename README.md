@@ -112,6 +112,7 @@ http://sandbox.hortonworks.com:9090/nifi
   
   - Pre-requisite 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
+  yum install -y ntp
   service ntpd stop
   ntpdate pool.ntp.org
   service ntpd start
