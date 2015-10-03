@@ -89,6 +89,22 @@ http://sandbox.hortonworks.com:9090/nifi
 - You can also open it from within Ambari via [iFrame view](https://github.com/abajwa-hw/iframe-view)
 ![Image](../master/screenshots/screenshot-nifi-view.png?raw=true)
 
+  - Sample steps to automate this (requires maven):
+  ```
+  git clone https://github.com/abajwa-hw/iframe-view.git
+  sed -i "s/IFRAME_VIEW/NIFI_VIEW/g" iframe-view/src/main/resources/view.xml 
+  sed -i "s/iFrame View/Nifi View/g" iframe-view/src/main/resources/view.xml 
+  sed -i "s#sandbox.hortonworks.com:6080#sandbox.hortonworks.com:9090/nifi/#g"  iframe-view/src/main/resources/index.html 
+  sed -i "s/iframe-view/nifi-view/g" iframe-view/pom.xml 
+  sed -i "s/Ambari iFrame View/Nifi View/g" iframe-view/pom.xml 
+  mv iframe-view nifi-view
+  cd nifi-view
+  mvn clean package
+
+  cp target/*.jar /var/lib/ambari-server/resources/views
+  ambari-server restart
+  ```
+
 - Create simple flow to read Tweets into HDFS and Solr. 
   - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
   ```
