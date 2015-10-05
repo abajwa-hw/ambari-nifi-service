@@ -55,4 +55,4 @@ nifi_boostrap_content = config['configurations']['nifi-bootstrap-env']['content'
 master_configs = config['clusterHostInfo']
 ambari_server = str(master_configs['ambari_server_host'][0])
 
-temp_file='/tmp/nifi-0.3.0-SNAPSHOT-bin.zip'
+temp_file='/tmp/'+nifi_dirname+'.zip'
