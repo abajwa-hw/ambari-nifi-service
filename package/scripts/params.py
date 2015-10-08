@@ -13,7 +13,8 @@ config = Script.get_config()
 #nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
 #nifi_dirname = 'nifi-0.3.0'
 nifi_dirname = 'nifi-1.0.0.0-7'
-  
+ 
+    
 # params from nifi-ambari-config
 nifi_install_dir = config['configurations']['nifi-ambari-config']['nifi.install_dir']
 nifi_port = config['configurations']['nifi-ambari-config']['nifi.port']
@@ -31,12 +32,15 @@ else:
   conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
   bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
 
-# params from nifi-logback
-nifi_user= config['configurations']['nifi-logback-env']['nifi_user']
-nifi_group= config['configurations']['nifi-logback-env']['nifi_group']
-nifi_log_dir = config['configurations']['nifi-logback-env']['nifi_log_dir']
-nifi_logback_content = config['configurations']['nifi-logback-env']['content']
+# params from nifi-boostrap
+nifi_boostrap_content = config['configurations']['nifi-bootstrap-env']['content']
+nifi_user = config['configurations']['nifi-bootstrap-env']['nifi_user']
+nifi_group = config['configurations']['nifi-bootstrap-env']['nifi_group']
+nifi_log_dir = config['configurations']['nifi-bootstrap-env']['nifi_log_dir']
 nifi_log_file = os.path.join(nifi_log_dir,'nifi-setup.log')
+
+# params from nifi-logback
+nifi_logback_content = config['configurations']['nifi-logback-env']['content']
 
 # params from nifi-properties-env
 nifi_properties_content = config['configurations']['nifi-properties-env']['content']
@@ -44,8 +48,7 @@ nifi_properties_content = config['configurations']['nifi-properties-env']['conte
 # params from nifi-flow
 nifi_flow_content = config['configurations']['nifi-flow-env']['content']
 
-# params from nifi-boostrap
-nifi_boostrap_content = config['configurations']['nifi-bootstrap-env']['content']
+
 
 
 
