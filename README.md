@@ -195,8 +195,10 @@ service ambari-server restart
   - Download prebuilt Twitter_Dashboard.xml template to your laptop from [here](https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/Twitter_Dashboard.xml)
   - Import flow template info Nifi:
     - Import template by clicking on Templates (third icon from right) which will launch the 'Nifi Flow templates' popup
+     ![Image](../master/screenshots/nifi-flow-templates.png?raw=true)
     - Browse and navigate to where ever you downloaded Twitter_Dashboard.xml on your local machine
-    - Click Import
+    - Click Import. Now the template should appear.
+     ![Image](../master/screenshots/nifi-flow-templates1.png?raw=true)    
     - Close the popup
     - Drag/drop the Template icon (7th icon form left) onto the canvas. A picklist popup should appear
     - Select 'Twitter dashboard' and click Add
