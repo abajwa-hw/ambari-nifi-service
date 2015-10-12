@@ -174,23 +174,7 @@ service ambari-server restart
   ntpdate pool.ntp.org
   service ntpd start
   ```  
-  
-  - Create Hive table to be able to run queries on the tweets
-  ```
-  sudo -u hdfs hadoop fs -chmod -R 777 /tmp/tweets_staging
-
-  hive> create table if not exists tweets_text_partition(
-    tweet_id bigint, 
-    created_unixtime bigint, 
-    created_time string, 
-    displayname string, 
-    msg string,
-    fulltext string
-  )
-  row format delimited fields terminated by "|"
-  location "/tmp/tweets_staging";
-  ```    
-  
+    
 - Now open Nifi webui and run the remaining steps there:    
   - Download prebuilt Twitter_Dashboard.xml template to your laptop from [here](https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/Twitter_Dashboard.xml)
   - Import flow template info Nifi:
@@ -231,6 +215,23 @@ service ambari-server restart
   - After few seconds you will see data flowing
  ![Image](../master/screenshots/twitter-flow.png?raw=true)
  
+   - Create Hive table to be able to run queries on the tweets
+  ```
+  sudo -u hdfs hadoop fs -chmod -R 777 /tmp/tweets_staging
+
+  hive> create table if not exists tweets_text_partition(
+    tweet_id bigint, 
+    created_unixtime bigint, 
+    created_time string, 
+    displayname string, 
+    msg string,
+    fulltext string
+  )
+  row format delimited fields terminated by "|"
+  location "/tmp/tweets_staging";
+  ```    
+
+
   - Verify that: 
     - tweets appear under /tmp dir in HDFS. You can see this via Files view in Ambari:
     ![Image](../master/screenshots/Files-view.png?raw=true) 
