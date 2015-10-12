@@ -257,7 +257,7 @@ service ambari-server restart
     ![Image](../master/screenshots/nifi-stats.png?raw=true)
     
     - You should also see Nifi metrics in Ambari (assuming you started Ambari metrics earlier)
-    ![Image](../master/screenshots/screenshot-nifi-stack.png?raw=true)
+    ![Image](../master/screenshots/screenshot-nifi-service.png?raw=true)
 
   - Data provenance in Nifi:
     - In Nifi home screen, click Provenance icon (5th icon from top right corner) to open Provenance page:
