@@ -107,11 +107,37 @@ http://sandbox.hortonworks.com:9090/nifi
 
 #### Build Twitter flow
 
-- Create simple flow to read Tweets into HDFS and Solr. 
-  - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to start SolrCloud and create a collection
+- Create simple flow to read Tweets into HDFS/Solr and visualize using Banana dashboard
+
+  - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to setup Banana, start SolrCloud and create a collection
+
+    - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch first. These are not needed on sandbox.
+    
+  ```
+  yum install -y lucidworks-hdpsearch
+  sudo -u hdfs hadoop fs -mkdir /user/solr
+  sudo -u hdfs hadoop fs -chown solr /user/solr
+  ```    
+    
+  - Setup the Banana dashboard by copying default.json to dashboard dir
+  ```
+  cd /opt/lucidworks-hdpsearch/solr/server/solr-webapp/webapp/banana/app/dashboards/
+  mv default.json default.json.orig
+  wget https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/default.json
+  ```
+
+  -  Edit /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/solrconfig.xml and add `<str>EEE MMM d HH:mm:ss Z yyyy</str>` so it looks like below. This is done to allow Solr to recognize the timestamp format of tweets. 
+  ```
+    <processor class="solr.ParseDateFieldUpdateProcessorFactory">
+      <arr name="format">
+        <str>EEE MMM d HH:mm:ss Z yyyy</str>
+   ```  
+  
+  - Start Solr in cloud mode and create a collection called tweets
   ```
   chown -R solr:solr /opt/lucidworks-hdpsearch/solr  #current sandbox version has files owned by root here which causes problems
   su solr
+  
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
 
   /opt/lucidworks-hdpsearch/solr/bin/solr create -c tweets \
@@ -120,13 +146,7 @@ http://sandbox.hortonworks.com:9090/nifi
      -rf 1 
   ```  
   
-    - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch first
-    
-  ```
-  yum install -y lucidworks-hdpsearch
-  sudo -u hdfs hadoop fs -mkdir /user/solr
-  sudo -u hdfs hadoop fs -chown solr /user/solr
-  ```    
+
   
   - Pre-requisite 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
