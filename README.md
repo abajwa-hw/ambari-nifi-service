@@ -211,9 +211,10 @@ service ambari-server restart
   - Configure GetTwitter processor
     - Right click on 'GetTwitter' processor (near top) and click Configure
       - Under Properties:
-        - Add your Twitter key/secrets
+        - Enter your Twitter key/secrets
         - ensure the 'Twitter Endpoint' is set to 'Filter Endpoint'
-        - enter the search terms (e.g. AAPL,GOOG,MSFT,ORCL) under 'Terms to Filter on'  
+        - enter the search terms (e.g. AAPL,GOOG,MSFT,ORCL) under 'Terms to Filter on' 
+        ![Image](../master/screenshots/configure-twitter-processor.png?raw=true)
         
   - Review the other processors and modify properties as needed:
     - EvaluateJsonPath: Pulls out attributes of tweets
