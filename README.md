@@ -200,7 +200,10 @@ service ambari-server restart
     - Click Import. Now the template should appear.
      ![Image](../master/screenshots/nifi-flow-templates1.png?raw=true)    
     - Close the popup
+    
+  - Instantiate the Twitter dashboard template:    
     - Drag/drop the Template icon (7th icon form left) onto the canvas. A picklist popup should appear
+    [Image](../master/screenshots/nifi-instantiate-template.png?raw=true)   
     - Select 'Twitter dashboard' and click Add
     
   - Configure GetTwitter processor
