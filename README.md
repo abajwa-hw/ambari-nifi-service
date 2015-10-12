@@ -107,9 +107,19 @@ http://sandbox.hortonworks.com:9090/nifi
 
 #### Build Twitter flow
 
-- Create simple flow to read Tweets into HDFS/Solr and visualize using Banana dashboard
+- Install Nifi via Ambari service on sandbox by running below and running 'Add service' wizard
+```
+VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/NIFI   
+#sandbox
+service ambari restart
+#non sandbox
+service ambari-server restart
+``` 
 
-  - Pre-requisite 1: HDP sandbox comes LW HDP search. Follow the steps below to use it to setup Banana, start SolrCloud and create a collection
+- Import simple flow to read Tweets into HDFS/Solr and visualize using Banana dashboard
+
+  - HDP sandbox comes LW HDP search. Follow the steps below to use it to setup Banana, start SolrCloud and create a collection
 
     - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch first. These are not needed on sandbox.
     
@@ -119,6 +129,14 @@ http://sandbox.hortonworks.com:9090/nifi
   sudo -u hdfs hadoop fs -chown solr /user/solr
   ```    
     
+  - Ensure no log files owned by root
+  ```
+  chown -R solr:solr /opt/lucidworks-hdpsearch/solr  #current sandbox version has files owned by root here which causes problems
+  ```    
+  - Run remaining setup steps as solr user
+  ```
+  su solr
+  ```
   - Setup the Banana dashboard by copying default.json to dashboard dir
   ```
   cd /opt/lucidworks-hdpsearch/solr/server/solr-webapp/webapp/banana/app/dashboards/
@@ -134,10 +152,7 @@ http://sandbox.hortonworks.com:9090/nifi
    ```  
   
   - Start Solr in cloud mode and create a collection called tweets
-  ```
-  chown -R solr:solr /opt/lucidworks-hdpsearch/solr  #current sandbox version has files owned by root here which causes problems
-  su solr
-  
+  ```  
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
 
   /opt/lucidworks-hdpsearch/solr/bin/solr create -c tweets \
@@ -148,47 +163,56 @@ http://sandbox.hortonworks.com:9090/nifi
   
 
   
-  - Pre-requisite 2: Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
+  - Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
   yum install -y ntp
   service ntpd stop
   ntpdate pool.ntp.org
   service ntpd start
   ```  
+  
+  - Create Hive table to be able to run queries on the tweets
+  ```
+  sudo -u hdfs hadoop fs -chmod -R 777 /tmp/tweets_staging
+
+  hive> create table if not exists tweets_text_partition(
+    tweet_id bigint, 
+    created_unixtime bigint, 
+    created_time string, 
+    displayname string, 
+    msg string,
+    fulltext string
+  )
+  row format delimited fields terminated by "|"
+  location "/tmp/tweets_staging"
+
+```    
   - Now open Nifi webui and run the remaining steps there:    
-  - Capture tweets from Twitter API
-    - Drag processor (next to nifi icon in upper left) to canvas and search for GetTwitter and click Add to add to canvas.
-    - Right click on it > Configure
-      - Under Settings:
-        - check failure and success 
+  - Download prebuilt Twitter_Dashboard.xml template to your laptop from [here](https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/Twitter_Dashboard.xml)
+  - Import flow template info Nifi:
+    - Import template by clicking on Templates (third icon from right) which will launch the 'Nifi Flow templates' popup
+    - Browse and navigate to where ever you downloaded Twitter_Dashboard.xml on your local machine
+    - Click Import
+    - Close the popup
+    - Drag/drop the Template icon (7th icon form left) onto the canvas. A picklist popup should appear
+    - Select 'Twitter dashboard' and click Add
+    
+  - Configure GetTwitter processor
+    - Right click on 'GetTwitter' processor (near top) and click Configure
       - Under Properties:
         - Add your Twitter key/secrets
-        - change the 'Twitter Endpoint' to 'Filter Endpoint'
-        - enter the search terms (e.g. hortonworks,hadoop) under 'Terms to Filter on'  
+        - ensure the 'Twitter Endpoint' is set to 'Filter Endpoint'
+        - enter the search terms (e.g. AAPL,GOOG,MSFT,ORCL) under 'Terms to Filter on'  
         
-  - Write tweets to HDFS    
-    - Drag processor to canvas and search for PutHDFS
-    - Right click on it > Configure
-      - Under Settings:
-        - check failure and success
-      - Under Properties:
-        - Hadoop Configuration Resources: `/etc/hadoop/conf/core-site.xml`
-        - Directory: `/tmp`
-        
-  - Connect the two processors:
-    - By dragging the circle in the center of GetTwitter box to PutHDFS box and click Add to add to canvas.
-    
-  - Write tweets to Solr
-    - Drag procesor to canvas and search for PutSolrContentStream
-    - Right click on it > Configure
-      - Under Settings:
-        - check failure and success
-      - Under Properties:
-        - Solr Type: Cloud
-        - Solr Location: sandbox.hortonworks.com:2181
-        - Collection: tweets  
-      - Connect the two by dragging the circle in the center of GetTwitter box to PutSolrContentStream box and click Add  
-
+  - Review the other processors and modify properties as needed:
+    - EvaluateJsonPath: Pulls out attributes of tweets
+    - RouteonAttribute: Ensures only tweets with non-empty messages are processed
+    - PutSolrContentStream: Writes the selected attributes to Solr. In this case, assuming Solr is running in cloud mode with a collection 'tweets'
+    - ReplaceText: Formats each tweet as pipe (|) delimited line entry e.g. tweet_id|unixtime|humantime|user_handle|message|full_tweet
+    - MergeContent: Merges tweets into a single file (either 20 tweets or 120s, whichever comes first)
+    - PutFile: writes tweets to local disk under /tmp/tweets/
+    - PutHDFS: writes tweets to HDFS under /tmp/tweets_staging
+            
   - If setup correctly, the top left hand of each processor on the canvas will show a red square (indicating the flow is stopped)
 
   - Click the Start button (green triangle near top of screen) to start the flow
@@ -202,6 +226,18 @@ http://sandbox.hortonworks.com:9090/nifi
       - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
     ![Image](../master/screenshots/Solr-query.png?raw=true)  
 
+  - tweets appear in Banana: 
+    - http://sandbox.hortonworks.com:8983/solr/banana/index.html#/dashboard
+    ![Image](../master/screenshots/banana-view-1.png?raw=true)  
+    ![Image](../master/screenshots/banana-view-2.png?raw=true)  
+
+    
+  - Tweets appear in Hive:
+    - http://sandbox.hortonworks.com:8080/#/main/views/HIVE/1.0.0/Hive
+    ![Image](../master/screenshots/Hive-view.png?raw=true)  
+  
+- Other Nifi features
+    
   - Flow statistics/graphs:
     - Right click on one of the processors (e.g. PutHDFS) and select click 'Stats' to see a number of charts/metrics:
     ![Image](../master/screenshots/nifi-stats.png?raw=true)
