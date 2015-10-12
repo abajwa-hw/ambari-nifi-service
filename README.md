@@ -191,7 +191,7 @@ service ambari-server restart
   location "/tmp/tweets_staging";
   ```    
   
-  - Now open Nifi webui and run the remaining steps there:    
+- Now open Nifi webui and run the remaining steps there:    
   - Download prebuilt Twitter_Dashboard.xml template to your laptop from [here](https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/Twitter_Dashboard.xml)
   - Import flow template info Nifi:
     - Import template by clicking on Templates (third icon from right) which will launch the 'Nifi Flow templates' popup
