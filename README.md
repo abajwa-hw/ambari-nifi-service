@@ -222,9 +222,11 @@ service ambari-server restart
   - Click the Start button (green triangle near top of screen) to start the flow
   - After few seconds you will see data flowing
  ![Image](../master/screenshots/twitter-flow.png?raw=true)
+ 
   - Verify that: 
     - tweets appear under /tmp dir in HDFS. You can see this via Files view in Ambari:
     ![Image](../master/screenshots/Files-view.png?raw=true) 
+    
     - tweets appear in Solr: 
       - http://sandbox.hortonworks.com:8983/solr/tweets_shard1_replica1/select?q=*:*
       - http://sandbox.hortonworks.com:8983/solr/#/tweets_shard1_replica1/query
