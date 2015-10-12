@@ -203,8 +203,9 @@ service ambari-server restart
     - Close the popup
     
   - Instantiate the Twitter dashboard template:    
-    - Drag/drop the Template icon (7th icon form left) onto the canvas. A picklist popup should appear
-    [Image](../master/screenshots/nifi-instantiate-template.png?raw=true)   
+    - Drag/drop the Template icon (7th icon form left) onto the canvas so that a picklist popup appears
+    ![Image](../master/screenshots/nifi-instantiate-template.png?raw=true)   
+    
     - Select 'Twitter dashboard' and click Add
     
   - Configure GetTwitter processor
