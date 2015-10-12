@@ -197,8 +197,10 @@ service ambari-server restart
     - Import template by clicking on Templates (third icon from right) which will launch the 'Nifi Flow templates' popup
      ![Image](../master/screenshots/nifi-flow-templates.png?raw=true)
     - Browse and navigate to where ever you downloaded Twitter_Dashboard.xml on your local machine
-    - Click Import. Now the template should appear
-     ![Image](../master/screenshots/nifi-flow-templates1.png?raw=true)    
+    - Click Import. Now the template should appear:
+    
+    ![Image](../master/screenshots/nifi-flow-templates1.png?raw=true)    
+    
     - Close the popup
     
   - Instantiate the Twitter dashboard template:    
