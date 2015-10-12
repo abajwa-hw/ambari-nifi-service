@@ -144,7 +144,11 @@ service ambari-server restart
   wget https://raw.githubusercontent.com/abajwa-hw/ambari-nifi-service/master/demofiles/default.json
   ```
 
-  -  Edit /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/solrconfig.xml and add `<str>EEE MMM d HH:mm:ss Z yyyy</str>` so it looks like below. This is done to allow Solr to recognize the timestamp format of tweets. 
+  -  Edit solrconfig.xml by adding `<str>EEE MMM d HH:mm:ss Z yyyy</str>` under `ParseDateFieldUpdateProcessorFactory` so it looks like below. This is done to allow Solr to recognize the timestamp format of tweets. 
+  ```
+  vi /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/solrconfig.xml
+  ```
+  
   ```
     <processor class="solr.ParseDateFieldUpdateProcessorFactory">
       <arr name="format">
