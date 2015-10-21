@@ -29,8 +29,8 @@ if setup_prebuilt:
   conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
   bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
 else:
-  conf_dir =  glob.glob(os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
-  bin_dir =  glob.glob(os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
+  conf_dir =  glob.glob(nifi_install_dir + '/' + nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
+  bin_dir =  glob.glob(nifi_install_dir + '/' + nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
   
 
   #conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
