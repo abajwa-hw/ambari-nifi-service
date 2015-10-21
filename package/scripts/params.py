@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from resource_management import *
 from resource_management.libraries.script.script import Script
-import sys, os
+import sys, os, glob
 from resource_management.libraries.functions.version import format_hdp_stack_version
 from resource_management.libraries.functions.default import default
 
@@ -29,8 +29,9 @@ if setup_prebuilt:
   conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
   bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
 else:
-  conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/conf'
-  bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/bin'
+  conf_dir =  glob.glob(os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
+  bin_dir =  glob.glob(os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
+  
 
   #conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
   #bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
