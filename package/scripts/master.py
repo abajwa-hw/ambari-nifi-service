@@ -179,6 +179,8 @@ class Master(Script):
       Execute('curl -o /etc/yum.repos.d/epel-apache-maven.repo https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo')
 
   def set_conf_bin(self, env):
+    import params
+  
     if params.setup_prebuilt:
       params.conf_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'conf'])
       params.bin_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'bin'])
