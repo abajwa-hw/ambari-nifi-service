@@ -29,8 +29,11 @@ if setup_prebuilt:
   conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'conf'])
   bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname,'bin'])
 else:
-  conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
-  bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
+  conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/conf'
+  bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-*/nifi-*/bin'
+
+  #conf_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/conf'
+  #bin_dir = os.path.join(*[nifi_install_dir,nifi_dirname]) + '/nifi-assembly/target/nifi-0.3.0-SNAPSHOT-bin/nifi-0.3.0-SNAPSHOT/bin'
 
 # params from nifi-boostrap
 nifi_boostrap_content = config['configurations']['nifi-bootstrap-env']['content']
