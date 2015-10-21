@@ -62,8 +62,8 @@ class Master(Script):
       #Execute('mv '+params.nifi_dir+'/*/* ' + params.nifi_dir, user=params.nifi_user)
           
 
-      params.conf_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'conf'])
-      params.bin_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'bin'])
+      #params.conf_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'conf'])
+      #params.bin_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'bin'])
       
       #update the configs specified by user
       self.configure(env, True)
@@ -96,8 +96,8 @@ class Master(Script):
                   
       Execute('cd '+params.nifi_dir+'; mvn -T C2.0 clean install -DskipTests >> ' + params.nifi_log_file, user=params.nifi_user)
       
-      params.conf_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
-      params.bin_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
+      #params.conf_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
+      #params.bin_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
 
       #update the configs specified by user
       self.configure(env, True)
@@ -125,6 +125,8 @@ class Master(Script):
     env.set_params(params)
     env.set_params(status_params)
     
+    self.set_conf_bin(env)
+    
     #write out nifi.properties
     properties_content=InlineTemplate(params.nifi_properties_content)
     File(format("{params.conf_dir}/nifi.properties"), content=properties_content, owner=params.nifi_user, group=params.nifi_group) # , mode=0777)    
@@ -150,6 +152,7 @@ class Master(Script):
   def stop(self, env):
     import params
     import status_params    
+    self.set_conf_bin(env)    
     Execute (params.bin_dir+'/nifi.sh stop >> ' + params.nifi_log_file, user=params.nifi_user)
     Execute ('rm ' + status_params.nifi_pid_file)
  
@@ -158,6 +161,7 @@ class Master(Script):
     import params
     import status_params
     self.configure(env) 
+    self.set_conf_bin(env)    
     Execute('echo pid file ' + status_params.nifi_pid_file)
     Execute (params.bin_dir+'/nifi.sh start >> ' + params.nifi_log_file, user=params.nifi_user)
 
@@ -173,6 +177,14 @@ class Master(Script):
     distribution = platform.linux_distribution()[0].lower()
     if distribution in ['centos', 'redhat'] and not os.path.exists('/etc/yum.repos.d/epel-apache-maven.repo'):
       Execute('curl -o /etc/yum.repos.d/epel-apache-maven.repo https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo')
+
+  def set_conf_bin(self, env):
+    if setup_prebuilt:
+      params.conf_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'conf'])
+      params.bin_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'bin'])
+    else:
+      params.conf_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
+      params.bin_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
 
       
 if __name__ == "__main__":
