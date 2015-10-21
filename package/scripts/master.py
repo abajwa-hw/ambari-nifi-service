@@ -61,6 +61,9 @@ class Master(Script):
       Execute('unzip '+params.temp_file+' -d ' + params.nifi_install_dir + ' >> ' + params.nifi_log_file, user=params.nifi_user)
       #Execute('mv '+params.nifi_dir+'/*/* ' + params.nifi_dir, user=params.nifi_user)
           
+
+      params.conf_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'conf'])
+      params.bin_dir = os.path.join(*[params.nifi_install_dir,params.nifi_dirname,'bin'])
       
       #update the configs specified by user
       self.configure(env, True)
@@ -93,6 +96,9 @@ class Master(Script):
                   
       Execute('cd '+params.nifi_dir+'; mvn -T C2.0 clean install -DskipTests >> ' + params.nifi_log_file, user=params.nifi_user)
       
+      params.conf_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/conf')[0]
+      params.bin_dir =  glob.glob(params.nifi_install_dir + '/' + params.nifi_dirname + '/nifi-assembly/target/nifi-*/nifi-*/bin')[0]
+
       #update the configs specified by user
       self.configure(env, True)
       #Execute('wget https://www.dropbox.com/s/n82hxkeg8ri0z70/flow.xml.gz -O '+params.conf_dir+'/flow.xml.gz',user=params.nifi_user)
