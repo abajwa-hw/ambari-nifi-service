@@ -82,10 +82,10 @@ class Master(Script):
       #if params.setup_view:
         #Install maven repo if needed
       self.install_mvn_repo()      
-        # Install packages listed in metainfo.xml
-        #self.install_packages(env)    
+      # Install packages listed in metainfo.xml
+      self.install_packages(env)    
     
-      Execute('yum -y install java-1.7.0-openjdk-devel >> ' + params.nifi_log_file)
+      # Execute('yum -y install java-1.7.0-openjdk-devel >> ' + params.nifi_log_file)
       
       Execute('echo Compiling nifi from source')
       Execute('cd '+params.nifi_install_dir+'; git clone https://git-wip-us.apache.org/repos/asf/nifi.git '+params.nifi_dir+' >> ' + params.nifi_log_file)
