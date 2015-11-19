@@ -105,6 +105,42 @@ http://sandbox.hortonworks.com:9090/nifi
   ambari-server restart
   ```
 
+
+#### Build flow to feed logs from UDP to HDFS
+
+- Install Nifi via Ambari service on sandbox by running below and running 'Add service' wizard
+```
+VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/NIFI   
+#sandbox
+service ambari restart
+#non sandbox
+service ambari-server restart
+``` 
+
+- Drag processors (first icon on upper left) to Nifi canvas and make below configurations:
+  - ListenUDP: pull data from port 9091 info flow files
+    - Set `Port` = `9091`
+  - ExtactText: extract text from flow file
+  - MergeContent: merge multiple text into one
+    - Set `Min num entries` = `5`
+    - Set `Max Bin Age` = `5s`  
+  - PutHDFS: write merged content into HDFS files into /tmp/logs
+    - Set `Directory` = `/tmp/logs`
+    - Set `Hadoop Config resources` = `/etc/hadoop/conf/core-site.xml`
+  
+![Image](../master/screenshots/nifi-udp-log-flow.png?raw=true)
+
+- Start the flow
+- Push name node log to port 9091 in UDP format using netcat:
+```
+tail -f /var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox.hortonworks.com.log | nc -4u localhost 9091
+```
+- After few seconds data should start flowing into `/tmp/logs` dir in HDFS.
+  - Open Files view: http://sandbox.hortonworks.com:8080/#/main/views/FILES/1.0.0/Files
+  ![Image](../master/screenshots/ambari-files-logs.png?raw=true)
+
+
 #### Build Twitter flow
 
 - Install Nifi via Ambari service on sandbox by running below and running 'Add service' wizard
