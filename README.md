@@ -131,7 +131,7 @@ service ambari-server restart
   
 ![Image](../master/screenshots/nifi-udp-log-flow.png?raw=true)
 
-- Start the flow
+- Start the flow by clicking the Play icon
 - Push name node log to port 9091 in UDP format using netcat:
 ```
 tail -f /var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox.hortonworks.com.log | nc -4u localhost 9091
