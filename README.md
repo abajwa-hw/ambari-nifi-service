@@ -128,7 +128,8 @@ service ambari-server restart
   - PutHDFS: write merged content into HDFS files into /tmp/logs
     - Set `Directory` = `/tmp/logs`
     - Set `Hadoop Config resources` = `/etc/hadoop/conf/core-site.xml`
-  
+- Alternatively, you can import [this template](https://github.com/abajwa-hw/ambari-nifi-service/raw/master/demofiles/Ingest_logs_over_UDP.xml) for the above flow
+
 ![Image](../master/screenshots/nifi-udp-log-flow.png?raw=true)
 
 - Start the flow by clicking the Play icon
