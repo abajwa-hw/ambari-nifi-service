@@ -194,6 +194,7 @@ service ambari-server restart
   
   - Start Solr in cloud mode and create a collection called tweets
   ```  
+  export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk.x86_64
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z localhost:2181
 
   /opt/lucidworks-hdpsearch/solr/bin/solr create -c tweets \
@@ -202,7 +203,10 @@ service ambari-server restart
      -rf 1 
   ```  
   
-
+  - Exit to run remaining steps as root
+  ```
+  exit
+  ```
   
   - Ensure the time on your sandbox is accurate or you will get errors using the GetTwitter processor. To fix the time, run the below:
   ```
