@@ -51,7 +51,11 @@ nifi_flow_content = config['configurations']['nifi-flow-env']['content']
 
 #autodetect ambari server for metrics
 #TODO: confirm that this should point to ambari_server_host (and not metrics or collector server)
-master_configs = config['clusterHostInfo']
-ambari_server = str(master_configs['ambari_server_host'][0])
+if 'metrics_collector_hosts' in config['clusterHostInfo']:
+  metrics_collector_host = str(config['clusterHostInfo']['metrics_collector_hosts'][0])
+  metrics_collector_port = str(get_port_from_url(config['configurations']['ams-site']['timeline.metrics.service.webapp.address']))
+else:
+  metrics_collector_host = ''
+  metrics_collector_port = ''
 
 temp_file='/tmp/'+nifi_dirname+'.zip'

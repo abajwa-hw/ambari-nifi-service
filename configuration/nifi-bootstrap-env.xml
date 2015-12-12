@@ -78,7 +78,7 @@ java.arg.6=-Djava.protocol.handler.pkgs=sun.net.www.protocol
 java.arg.14=-Djava.awt.headless=true
 
 #Ambari Metrics Collector URL - passed in to flow.xml for AmbariReportingTask
-java.arg.15=-Dambari.metrics.collector.url=http://{{ambari_server}}:6188/ws/v1/timeline/metrics
+java.arg.15=-Dambari.metrics.collector.url=http://{{metrics_collector_host}}:{{metrics_collector_port}}/ws/v1/timeline/metrics
 
 #Application ID - used in flow.xml - passed into flow.xml for AmbariReportingTask 
 java.arg.16=-Dambari.application.id=nifi
