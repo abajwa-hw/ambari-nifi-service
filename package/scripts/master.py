@@ -25,9 +25,10 @@ class Master(Script):
 
     #Create user and group if they don't exist
     self.create_linux_user(params.nifi_user, params.nifi_group)
-    Execute('cp /etc/sudoers /etc/sudoers.bak')        
-    Execute('echo "'+params.nifi_user+'    ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers')
-    Execute('echo Creating ' +  params.nifi_log_dir +  ' ' +  status_params.nifi_pid_dir)    
+    if params.nifi_user != 'root':
+      Execute('cp /etc/sudoers /etc/sudoers.bak')        
+      Execute('echo "'+params.nifi_user+'    ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers')
+      Execute('echo Creating ' +  params.nifi_log_dir +  ' ' +  status_params.nifi_pid_dir)    
 
 
             
