@@ -346,5 +346,5 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
    - Remove artifacts
     ```
     rm -rf /opt/nifi*
-    rm /tmp/nifi-0.3.0-SNAPSHOT-bin.zip
+    rm /tmp/nifi*.zip
     ```   
