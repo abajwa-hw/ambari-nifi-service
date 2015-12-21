@@ -167,7 +167,9 @@ class Master(Script):
     self.configure(env) 
     self.set_conf_bin(env)    
     Execute('echo pid file ' + status_params.nifi_pid_file)
-    Execute (params.bin_dir+'/nifi.sh start >> ' + params.nifi_log_file, user=params.nifi_user)
+    Execute('echo JAVA_HOME=' + params.jdk64_home)
+
+    Execute ('export JAVA_HOME='+params.jdk64_home+';'+params.bin_dir+'/nifi.sh start >> ' + params.nifi_log_file, user=params.nifi_user)
 
     Execute('cat '+params.bin_dir+'/nifi.pid'+" | grep pid | sed 's/pid=\(\.*\)/\\1/' > " + status_params.nifi_pid_file)
     Execute('chown '+params.nifi_user+':'+params.nifi_group+' ' + status_params.nifi_pid_file)

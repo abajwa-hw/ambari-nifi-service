@@ -47,10 +47,10 @@ nifi_flow_content = config['configurations']['nifi-flow-env']['content']
 
 
 
-
+#autodetect jdk home
+jdk64_home=config['hostLevelParams']['java_home']
 
 #autodetect ambari server for metrics
-#TODO: confirm that this should point to ambari_server_host (and not metrics or collector server)
 if 'metrics_collector_hosts' in config['clusterHostInfo']:
   metrics_collector_host = str(config['clusterHostInfo']['metrics_collector_hosts'][0])
   metrics_collector_port = str(get_port_from_url(config['configurations']['ams-site']['timeline.metrics.service.webapp.address']))
