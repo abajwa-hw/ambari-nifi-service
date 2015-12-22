@@ -331,13 +331,18 @@ service ambari-server restart
 
 - To remove the Nifi service: 
   - Stop the service via Ambari
-  - Unregister the service
+  - Unregister the service by running below from Ambari node
   
     ```
 export SERVICE=NIFI
 export PASSWORD=admin
 export AMBARI_HOST=localhost
-export CLUSTER=Sandbox    
+
+#detect name of cluster
+output=`curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari'  http://$AMBARI_HOST:8080/api/v1/clusters`
+CLUSTER=`echo $output | sed -n 's/.*"cluster_name" : "\([^\"]*\)".*/\1/p'`
+
+#unregister service from ambari
 curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
 
 #if above errors out, run below first to fully stop the service
