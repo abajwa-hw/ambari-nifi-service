@@ -18,14 +18,14 @@
   <property>
     <name>nifi_user</name>
     <value>nifi</value>
-    <!-- <property-type>USER</property-type> -->
+    <property-type>USER</property-type>
     <description>User nifi daemon runs as</description>
   </property> 
         
   <property>
     <name>nifi_group</name>
     <value>nifi</value>
-    <!-- <property-type>GROUP</property-type> -->
+    <property-type>GROUP</property-type>
     <description>nifi group</description>
   </property> 
           
