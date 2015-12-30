@@ -12,7 +12,7 @@ config = Script.get_config()
 
 #nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
 #nifi_dirname = 'nifi-0.3.0'
-nifi_dirname = 'nifi-1.1.0.0-10'
+nifi_dirname = 'nifi-1.1.1.0-12'
  
     
 # params from nifi-ambari-config
