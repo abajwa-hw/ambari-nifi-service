@@ -19,7 +19,9 @@ class Master(Script):
     #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.0.0.0/nifi-1.0.0.0-7-bin.zip'
     
     #official HDF 1.1.1 package (nifi 0.4.1)
-    snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.1.0/nifi-1.1.1.0-12-bin.zip'           
+    #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.1.0/nifi-1.1.1.0-12-bin.zip' 
+    snapshot_package='https://www.dropbox.com/s/u1gzrliukf0144f/nifi-0.3.1-SNAPSHOT-bin.zip?dl=0'
+    
     
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.3/services/NIFI/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
@@ -63,6 +65,14 @@ class Master(Script):
       if not os.path.exists(params.temp_file):
         Execute('wget '+snapshot_package+' -O '+params.temp_file+' -a '  + params.nifi_log_file, user=params.nifi_user)
       Execute('unzip '+params.temp_file+' -d ' + params.nifi_install_dir + ' >> ' + params.nifi_log_file, user=params.nifi_user)
+      Execute('rm '+params.temp_file)
+      #Execute('rm -rf ' +params.nifi_dir +'/lib/')
+      #if not os.path.exists(params.temp_lib_file):
+      #  Execute('wget https://www.dropbox.com/s/1l4amajzyx95pzb/lib.zip?dl=0 -O ' +params.temp_lib_file+ ' -a '  + params.nifi_log_file, user=params.nifi_user)
+      #Execute('mkdir '+params.nifi_dir +'/lib; unzip '+params.temp_lib_file +' -d ' + params.nifi_dir +'/lib/ >> ' + params.nifi_log_file, user=params.nifi_user)
+      #Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' +params.nifi_dir +'/lib/')
+      #Execute('rm '+params.temp_lib_file)
+      
       #Execute('mv '+params.nifi_dir+'/*/* ' + params.nifi_dir, user=params.nifi_user)
           
 
@@ -166,6 +176,8 @@ class Master(Script):
     import status_params
     self.configure(env) 
     self.set_conf_bin(env)    
+    Execute('touch ' + params.nifi_lock_file)
+    Execute('chown ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_lock_file)
     Execute('echo pid file ' + status_params.nifi_pid_file)
     Execute('echo JAVA_HOME=' + params.jdk64_home)
 

@@ -10,9 +10,9 @@ from resource_management.libraries.functions.default import default
 # server configurations
 config = Script.get_config()
 
-#nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
+nifi_dirname = 'nifi-0.3.1-SNAPSHOT'
 #nifi_dirname = 'nifi-0.3.0'
-nifi_dirname = 'nifi-1.1.1.0-12'
+#nifi_dirname = 'nifi-1.1.1.0-12'
  
     
 # params from nifi-ambari-config
@@ -58,4 +58,7 @@ else:
   metrics_collector_host = ''
   metrics_collector_port = ''
 
+nifi_lock_file = '/var/lock/subsys/nifi'
+
 temp_file='/tmp/'+nifi_dirname+'.zip'
+temp_lib_file='/tmp/lib.zip'

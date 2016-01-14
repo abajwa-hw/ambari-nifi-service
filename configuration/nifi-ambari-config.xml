@@ -41,8 +41,9 @@
     <description>Frequency with which Nifi metrics will be reported to Ambari Metrics. Only used during initial install of service. Post-install this can be reconfigured from Nifi UI under Controller Settings</description>
   </property>
   
-  
-  
-  
+  <property>
+    <name>nifi.webapp.address</name>
+    <value>localhost:9090</value>
+  </property>
     
 </configuration>  
