@@ -55,6 +55,12 @@ On bottom left -> Actions -> Add service -> check NiFi server -> Next -> Next ->
     - Max JVM memory size is 512mb
     - Run schedule for Nifi's Ambari reporting task is 1 min
   
+  - Note: On the latest sandbox there is a bug where when user gets to the 'Customize Services' page of the 'Add service wizard', it prompts for:
+    - On Ranger tab: "Ranger Admin user's password for Ambari"
+      - Type `rangeradmin`
+    - On Oozie tab: it complains about a security related property
+      - Delete the property  
+  
 - On successful deployment you will see the NiFi service as part of Ambari stack and will be able to start/stop the service from here:
 
 - You can see the parameters you configured under 'Configs' tab
