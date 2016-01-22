@@ -14,6 +14,8 @@ Authors:
   
 #### Setup
 
+#### Option 1: Deploy Nifi on existing cluster
+
 - Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
 - Import Sandbox_HDP_2.3_VMware.ova into VMWare and set the VM memory size to 8GB
 - Now start the VM
@@ -84,6 +86,60 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo"
 ```
 
 - ...and also install via Blueprint. See example [here](https://github.com/abajwa-hw/ambari-workshops/blob/master/blueprints-demo-security.md) on how to deploy custom services via Blueprints
+
+#### Option 2: Automated deployment of fresh cluster via blueprints
+
+- Bring up 4 VMs imaged with RHEL/CentOS 6.x (e.g. node1-4 in this case)
+
+- On non-ambari nodes, install ambari-agents and point them to ambari node (e.g. node1 in this case)
+```
+export ambari_server=node1
+curl -sSL https://raw.githubusercontent.com/seanorama/ambari-bootstrap/master/ambari-bootstrap.sh | sudo -E sh
+```
+
+- On Ambari node, install ambari-server
+```
+export install_ambari_server=true
+curl -sSL https://raw.githubusercontent.com/seanorama/ambari-bootstrap/master/ambari-bootstrap.sh | sudo -E sh
+yum install -y git
+sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/2.3/services/NIFI
+```
+
+- Restart Ambari
+```
+service ambari-server restart
+service ambari-agent restart    
+```
+
+- Confirm 4 agents were registered and agent remained up
+```
+curl -u admin:admin -H  X-Requested-By:ambari http://localhost:8080/api/v1/hosts
+service ambari-agent status
+```
+
+- (Optional) - You can generate BP and cluster file using Ambari recommendations API using these steps. 
+For more details, on the bootstrap scripts see bootstrap script git
+
+```
+yum install -y python-argparse
+git clone https://github.com/seanorama/ambari-bootstrap.git
+
+#Select the services to be deployed
+
+#option A: for only NIFI 
+#export ambari_services="NIFI"
+
+#option B: for minimal services
+#export ambari_services="HDFS MAPREDUCE2 YARN ZOOKEEPER HIVE NIFI"
+
+#option C: for most services
+#export ambari_services="ACCUMULO FALCON FLUME HBASE HDFS HIVE KAFKA KNOX MAHOUT OOZIE PIG SLIDER SPARK SQOOP MAPREDUCE2 STORM TEZ YARN ZOOKEEPER NIFI"
+
+bash ./ambari-bootstrap/deploy/deploy-recommended-cluster.bash
+
+```
+- You can monitor the progress of the deployment via Ambari (e.g. http://node1:8080). 
+
 
 #### Use NiFi
 
