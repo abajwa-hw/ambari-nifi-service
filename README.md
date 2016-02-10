@@ -187,9 +187,11 @@ service ambari-server restart
   - MergeContent: merge multiple text into one
     - Set `Min num entries` = `5`
     - Set `Max Bin Age` = `5s`  
+    - Terminate all relationships except for 'Merged'
   - PutHDFS: write merged content into HDFS files into /tmp/logs
     - Set `Directory` = `/tmp/logs`
     - Set `Hadoop Config resources` = `/etc/hadoop/conf/core-site.xml`
+    - Auto terminate all relationships (Succcess and Failure)
 - Alternatively, you can import [this template](https://github.com/abajwa-hw/ambari-nifi-service/raw/master/demofiles/Ingest_logs_over_UDP.xml) for the above flow
 
 ![Image](../master/screenshots/nifi-udp-log-flow.png?raw=true)
