@@ -12,8 +12,8 @@ config = Script.get_config()
 
 #nifi_dirname = 'nifi-0.3.0-SNAPSHOT'
 #nifi_dirname = 'nifi-0.3.0'
-nifi_dirname = 'nifi-1.1.1.0-12'
- 
+#nifi_dirname = 'nifi-1.1.1.0-12'
+nifi_dirname = 'nifi-0.5.1.1.1.2.0-32' 
     
 # params from nifi-ambari-config
 nifi_install_dir = config['configurations']['nifi-ambari-config']['nifi.install_dir']

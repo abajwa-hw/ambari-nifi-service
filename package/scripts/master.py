@@ -19,8 +19,10 @@ class Master(Script):
     #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.0.0.0/nifi-1.0.0.0-7-bin.zip'
     
     #official HDF 1.1.1 package (nifi 0.4.1)
-    snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.1.0/nifi-1.1.1.0-12-bin.zip'           
+    #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.1.0/nifi-1.1.1.0-12-bin.zip'           
     
+    snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.2.0/nifi-0.5.1.1.1.2.0-32-bin.zip'
+
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.3/services/NIFI/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
             

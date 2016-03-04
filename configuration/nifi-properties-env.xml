@@ -8,7 +8,7 @@
     <description>This is the jinja template for nifi.properties file</description>
     <value>      
 # Core Properties #
-nifi.version=0.3.0-SNAPSHOT
+nifi.version=0.5.1.1.1.2.0-32
 nifi.flow.configuration.file=./conf/flow.xml.gz
 nifi.flow.configuration.archive.dir=./conf/archive/
 nifi.flowcontroller.autoResumeState=true
@@ -25,6 +25,19 @@ nifi.ui.autorefresh.interval=30 sec
 nifi.nar.library.directory=./lib
 nifi.nar.working.directory=./work/nar/
 nifi.documentation.working.directory=./work/docs/components
+
+####################
+# State Management #
+####################
+nifi.state.management.configuration.file=./conf/state-management.xml
+# The ID of the local state provider
+nifi.state.management.provider.local=local-provider
+# The ID of the cluster-wide state provider. This will be ignored if NiFi is not clustered but must be populated if running in a cluster.
+nifi.state.management.provider.cluster=zk-provider
+# Specifies whether or not this instance of NiFi should run an embedded ZooKeeper server
+nifi.state.management.embedded.zookeeper.start=false
+# Properties file that provides the ZooKeeper properties to use if &lt;nifi.state.management.embedded.zookeeper.start&gt; is set to true
+nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties
 
 # H2 Settings
 nifi.database.directory=./database_repository

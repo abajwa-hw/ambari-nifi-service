@@ -83,6 +83,26 @@ java.arg.15=-Dambari.metrics.collector.url=http://{{metrics_collector_host}}:{{m
 #Application ID - used in flow.xml - passed into flow.xml for AmbariReportingTask 
 java.arg.16=-Dambari.application.id=nifi
 
+
+###
+# Notification Services for notifying interested parties when NiFi is stopped, started, dies
+###
+
+# XML File that contains the definitions of the notification services
+notification.services.file=./conf/bootstrap-notification-services.xml
+
+# In the case that we are unable to send a notification for an event, how many times should we retry?
+notification.max.attempts=5
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi is started?
+#nifi.start.notification.services=email-notification
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi is stopped?
+#nifi.stop.notification.services=email-notification
+
+# Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi dies?
+#nifi.dead.notification.services=email-notification
+
   </value>
   <description>Template for bootstrap.conf</description>
   

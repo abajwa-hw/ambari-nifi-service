@@ -3,7 +3,7 @@ Ambari service for easily installing and managing NiFi on HDP cluster and viewin
 
 Features:
 
-- By default, downloads the current GA version - HDF 1.1.1 package (nifi 0.4.1) - but also gives option to build the latest Nifi from source instead
+- By default, downloads the current GA version - HDF 1.1.2.0 package (nifi 0.5.1) - but also gives option to build the latest Nifi from source instead
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
@@ -16,8 +16,8 @@ Authors:
 
 #### Option 1: Deploy Nifi on existing cluster
 
-- Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-- Import Sandbox_HDP_2.3_VMware.ova into VMWare and set the VM memory size to 8GB
+- Download HDP 2.4 sandbox VM image (Hortonworks_sanbox_with_hdp_2_4_vmware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+- Import Hortonworks_sanbox_with_hdp_2_4_vmware.ova into VMWare and set the VM memory size to 8GB
 - Now start the VM
 - After it boots up, find the IP address of the VM and add an entry into your machines hosts file. For example:
 ```
@@ -36,6 +36,7 @@ http://sandbox.hortonworks.com:8080
 - To download the NiFi service folder, run below
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
+rm -rf /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/NIFI  
 sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/NIFI   
 ```
 
@@ -102,7 +103,7 @@ curl -sSL https://raw.githubusercontent.com/seanorama/ambari-bootstrap/master/am
 export install_ambari_server=true
 curl -sSL https://raw.githubusercontent.com/seanorama/ambari-bootstrap/master/ambari-bootstrap.sh | sudo -E sh
 yum install -y git
-sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/2.3/services/NIFI
+sudo git clone https://github.com/abajwa-hw/ambari-nifi-service.git   /var/lib/ambari-server/resources/stacks/HDP/2.4/services/NIFI
 ```
 
 - Restart Ambari
@@ -222,7 +223,7 @@ service ambari-server restart
 
   - HDP sandbox comes LW HDP search. Follow the steps below to use it to setup Banana, start SolrCloud and create a collection
 
-    - If running on an Ambari installed HDP 2.3 cluster (instead of sandbox), run the below to install HDPsearch first. These are not needed on sandbox.
+    - If running on an Ambari installed HDP 2.4 cluster (instead of sandbox), run the below to install HDPsearch first. These are not needed on sandbox.
     
   ```
   yum install -y lucidworks-hdpsearch
