@@ -1,6 +1,11 @@
+# encoding=utf8
+
 import sys, os, pwd, grp, signal, time, glob
 from resource_management import *
 from subprocess import call
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class Master(Script):
   def install(self, env):
