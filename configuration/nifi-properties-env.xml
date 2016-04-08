@@ -111,8 +111,8 @@ nifi.remote.input.secure=true
 
 # web properties #
 nifi.web.war.directory=./lib
-nifi.web.http.host={{nifi_port}}
-nifi.web.http.port=8080
+nifi.web.http.host=
+nifi.web.http.port={{nifi_port}}
 nifi.web.https.host=
 nifi.web.https.port=
 nifi.web.jetty.working.directory=./work/jetty
