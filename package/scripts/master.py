@@ -1,3 +1,5 @@
+# encoding=utf8
+
 import sys, os, pwd, grp, signal, time, glob
 from resource_management import *
 from subprocess import call
