@@ -8,7 +8,7 @@
     <description>This is the jinja template for nifi.properties file</description>
     <value>      
 # Core Properties #
-nifi.version=0.6.0.1.2.0.0-91
+nifi.version=0.6.0.1.2.0.1-1
 nifi.flow.configuration.file=./conf/flow.xml.gz
 nifi.flow.configuration.archive.dir=./conf/archive/
 nifi.flowcontroller.autoResumeState=true

@@ -6,7 +6,7 @@
             <name>NIFI</name>
             <displayName>NiFi</displayName>
             <comment>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data.</comment>
-            <version>1.2.0.0</version>
+            <version>1.2.0.1</version>
             <components>
                 <component>
                   <name>NIFI_MASTER</name>
