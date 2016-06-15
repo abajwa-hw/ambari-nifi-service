@@ -27,10 +27,13 @@ class Master(Script):
     #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.1.0/nifi-1.1.1.0-12-bin.zip'           
     
     #official HDF 1.1.2 package     
-    snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.2.0/nifi-0.5.1.1.1.2.0-32-bin.zip'
+    #snapshot_package='http://public-repo-1.hortonworks.com/HDF/1.1.2.0/nifi-0.5.1.1.1.2.0-32-bin.zip'
     
     #official HDF 1.2 package (nifi 0.6.0)
-    snapshot_package='http://public-repo-1.hortonworks.com/HDF/centos6/1.x/updates/1.2.0.0/HDF-1.2.0.0-91.zip'
+    #snapshot_package='http://public-repo-1.hortonworks.com/HDF/centos6/1.x/updates/1.2.0.0/HDF-1.2.0.0-91.zip'
+	
+	# HDF 1.2.0.1
+	snapshot_package='http://public-repo-1.hortonworks.com/HDF/centos6/1.x/updates/1.2.0.1/HDF-1.2.0.1-1.zip'
 
     #e.g. /var/lib/ambari-agent/cache/stacks/HDP/2.3/services/NIFI/package
     service_packagedir = os.path.realpath(__file__).split('/scripts')[0] 
