@@ -49,23 +49,29 @@ class Master(Script):
 
 
             
-    #create the log dir if it not already present
-    Directory([status_params.nifi_pid_dir, params.nifi_log_dir],
-            owner=params.nifi_user,
-            group=params.nifi_group,
-            recursive=True
-    )   
+    #create the log dir if it not already present - the below won't work on both Ambari 2.4 so re-writing
+    
+    #Directory([status_params.nifi_pid_dir, params.nifi_log_dir],
+    #        owner=params.nifi_user,
+    #        group=params.nifi_group,
+    #        recursive=True
+    #)
+    
+    Execute('mkdir -p '+status_params.nifi_pid_dir+' '+params.nifi_log_dir)
+    Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + status_params.nifi_pid_dir)
+    Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_log_dir)    
          
     Execute('touch ' +  params.nifi_log_file, user=params.nifi_user)    
     Execute('rm -rf ' + params.nifi_dir, ignore_failures=True)
-    #Execute('mkdir -p '+params.nifi_dir)
-    #Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_dir)
 
-    Directory([params.nifi_dir],
-            owner=params.nifi_user,
-            group=params.nifi_group,
-            recursive=True
-    )  
+    #Directory([params.nifi_dir],
+    #        owner=params.nifi_user,
+    #        group=params.nifi_group,
+    #        recursive=True
+    #)  
+
+    Execute('mkdir -p '+params.nifi_dir)
+    Execute('chown -R ' + params.nifi_user + ':' + params.nifi_group + ' ' + params.nifi_dir)
         
     #User selected option to use prebuilt nifi package 
     if params.setup_prebuilt:
