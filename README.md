@@ -8,6 +8,9 @@ Features:
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
+Updates:
+- Jul-10-2016: updated to support installing on Ambari 2.4/HDP 2.5 tech preview build/VM
+
 Limitations:
 
 - This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing demo/purposes
