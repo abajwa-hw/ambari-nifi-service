@@ -5,7 +5,7 @@
         <service>
             <name>NIFI</name>
             <displayName>NiFi</displayName>
-            <comment>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data.</comment>
+            <comment>Apache NiFi is an easy to use, powerful, and reliable system to process and distribute data. &lt;b&gt; This service is for demo purposes only and not officially supported &lt;/b&gt;</comment>
             <version>1.2.0.1</version>
             <components>
                 <component>
