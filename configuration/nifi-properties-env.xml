@@ -158,7 +158,7 @@ nifi.cluster.protocol.heartbeat.interval=5 sec
 nifi.cluster.protocol.is.secure=false
 
 # cluster node properties (only configure for cluster nodes) #
-nifi.cluster.is.node=true
+nifi.cluster.is.node={{nifi_is_node}}
 nifi.cluster.node.address={{nifi_node_host}}
 nifi.cluster.node.protocol.port={{nifi_node_protocol_port}}
 nifi.cluster.node.protocol.threads=10

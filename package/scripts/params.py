@@ -87,6 +87,11 @@ nifi_master_hosts = master_configs['nifi_master_hosts']
 nifi_num_nodes = len(master_configs['nifi_master_hosts'])
 nifi_node_host = socket.getfqdn()
 
+if nifi_num_nodes > 1:
+  nifi_is_node='true'
+else:
+  nifi_is_node='false'
+
 #detect zookeeper_quorum
 zookeeper_port=default('/configurations/zoo.cfg/clientPort', None)
 #get comma separated list of zookeeper hosts from clusterHostInfo

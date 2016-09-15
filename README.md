@@ -13,7 +13,7 @@ Updates:
 - Jul-10-2016: updated to support installing HDF 1.2.0.0 on Ambari 2.4/HDP 2.5 tech preview build/VM
 
 Installing on older Ambari versions:
-- Refer to [archive folder](https://github.com/abajwa-hw/ambari-nifi-service/tree/master/configuration) for older versions of the service definition 
+- Refer to [archives folder](https://github.com/abajwa-hw/ambari-nifi-service/tree/master/archives) for older versions of the service definition 
   - To install on Ambari 2.4 and earlier use HDF-1.2.0.0-Nifi-0.6.0.1.2.0.1.zip
 
 
