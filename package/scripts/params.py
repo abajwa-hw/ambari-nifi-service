@@ -72,6 +72,11 @@ nifi_env_content = config['configurations']['nifi-env']['content']
 #autodetect jdk home
 jdk64_home=config['hostLevelParams']['java_home']
 
+#hack for current sandbox where ambari still uses java 7
+sandbox_jdk8_loc = '/usr/lib/jvm/jre-1.8.0-openjdk.x86_64'
+if os.path.isfile(sandbox_jdk8_loc + '/bin/java'):
+  jdk64_home = sandbox_jdk8_loc
+
 #autodetect ambari server for metrics
 if 'metrics_collector_hosts' in config['clusterHostInfo']:
   metrics_collector_host = str(config['clusterHostInfo']['metrics_collector_hosts'][0])
