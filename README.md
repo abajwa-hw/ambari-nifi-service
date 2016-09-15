@@ -3,16 +3,21 @@ Ambari service for easily installing and managing NiFi on HDP cluster and viewin
 
 Features:
 
-- By default, downloads the current GA version - HDF 1.2.0.1 package (nifi 0.6.0) - but also gives option to build the latest Nifi from source instead
+- By default, downloads the current GA version 
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
 Updates:
-- Jul-10-2016: updated to support installing on Ambari 2.4/HDP 2.5 tech preview build/VM
+- Sept-14-2016: updated to support installing HDF 2.0.0.0 (Nifi 1.0) on Ambari 2.4/HDP 2.5 tech preview build/VM
+- Jul-10-2016: updated to support installing HDF 1.2.0.0 on Ambari 2.4/HDP 2.5 tech preview build/VM
+
+Installing on older Ambari versions:
+- Refer to [archive folder](https://github.com/abajwa-hw/ambari-nifi-service/tree/master/configuration) for older versions of the service definition 
+  - To install on Ambari 2.4 and earlier use HDF-1.2.0.0-Nifi-0.6.0.1.2.0.1.zip
+
 
 Limitations:
-
 - This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing demo/purposes
 - It does not support Ambari/HDP upgrade process and will cause upgrade problems if not removed prior to upgrade
 - Not tested on secured clusters
@@ -25,8 +30,8 @@ Authors:
 
 #### Option 1: Deploy Nifi on existing cluster
 
-- Download HDP 2.4 sandbox VM image (Hortonworks_sanbox_with_hdp_2_4_vmware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-- Import Hortonworks_sanbox_with_hdp_2_4_vmware.ova into VMWare and set the VM memory size to 8GB
+- Download HDP 2.5 sandbox VM image  from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
+- Import ova file into VMWare and set the VM memory size to 8GB
 - Now start the VM
 - After it boots up, find the IP address of the VM and add an entry into your machines hosts file. For example:
 ```

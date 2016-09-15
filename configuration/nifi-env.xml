@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+ 
+  <property>
+    <name>content</name>
+    <display-name>Template for nifi-env.sh</display-name>         
+    <value>
+#!/bin/sh
+
+# The java implementation to use.
+export JAVA_HOME={{jdk64_home}}
+
+export NIFI_HOME={{nifi_dir}}
+
+#The directory for the NiFi pid file
+export NIFI_PID_DIR="{{nifi_pid_dir}}"
+
+#The directory for NiFi log files
+export NIFI_LOG_DIR="{{nifi_log_dir}}"
+
+
+  </value>
+  <description>Template for nifi-env.sh</description>
+  <value-attributes>
+    <type>content</type>
+  </value-attributes>  
+  <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>
+

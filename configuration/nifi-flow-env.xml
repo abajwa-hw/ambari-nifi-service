@@ -42,7 +42,10 @@
 &lt;/flowController&gt;
   </value>
   <description>Initial template for flow.xml. Only used during initial install of Nifi service. Post-install this can be reconfigured from Nifi UI under Controller Settings</description>
-  
+  <value-attributes>
+    <type>content</type>
+  </value-attributes>
+  <on-ambari-upgrade add="true"/>  
   </property>
 
 </configuration>

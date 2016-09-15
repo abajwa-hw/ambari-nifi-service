@@ -10,11 +10,17 @@
     <value>/opt</value>
     <description>Local dir where to install component. NiFi folder will be created as a subdir of this dir e.g. /opt/HDF-x.x.x.x</description>
   </property> 
-  
+
   <property>
     <name>nifi.port</name>
     <value>9090</value>
     <description>Port NiFi runs on</description>
+  </property>
+
+  <property>
+    <name>nifi.node.protocol.port</name>
+    <value>9088</value>
+    <description>HTTP port NiFi node protocol runs on</description>
   </property>
 
   <property>
