@@ -223,6 +223,8 @@ tail -f /var/log/hadoop/hdfs/hadoop-hdfs-namenode-sandbox.hortonworks.com.log | 
 
 #### Build Twitter flow
 
+- Note: The below steps refer to installing Nifi Twitter demo on HDP sandbox. Another option is to deploy HDP cluster (on any cloud) with this demo already setup.  Automation script for this is provided [here](https://community.hortonworks.com/articles/58330/automation-to-deploy-hdp-25nifi-10-clusters-runnin.html)
+
 - Install Nifi via Ambari service on sandbox by running below and running 'Add service' wizard
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
