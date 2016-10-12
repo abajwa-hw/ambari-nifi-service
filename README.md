@@ -1,9 +1,9 @@
 #### Demo Ambari Service for NiFi
-**Demo** Ambari service for easily installing and managing NiFi on HDP cluster and viewing metrics.
+***Demo*** Ambari service for easily installing and managing NiFi on HDP cluster and viewing metrics.
 As of Sept 2016, the officially supported Ambari integration with Nifi is available as part of HDF stack. Details [here](http://docs.hortonworks.com/HDPDocuments/HDF2/HDF-2.0.0/bk_ambari-installation/content/index.html)
 
 Features:
-- This is a **Demo** Ambari service that can be used to install Nifi on sandbox or test clusters (**not for production use**)
+- This is a ***Demo*** Ambari service that can be used to install Nifi on sandbox or test clusters (***not for production use***)
 - By default, downloads the current GA version 
 - Exposes nifi.properties, bootstrap.conf, logback.xml in Ambari UI (so you can configure port, memory, log dir etc)
 - Sets up initial flow.xml.gz that sets up Ambari reporting task to send Ambari metrics
@@ -19,7 +19,7 @@ Installing on older Ambari versions:
 
 
 Limitations:
-- This is not an officially supported service and *is not meant to be deployed in production systems*. It is only meant for testing/demo purposes
+- This is not an officially supported service and ***is not meant to be deployed in production systems***. It is only meant for testing/demo purposes
 - It does not support Ambari/HDP upgrade process and will cause upgrade problems if not removed prior to upgrade
 - Does not support secured clusters
 
