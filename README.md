@@ -1,4 +1,4 @@
-#### Demo Ambari Service for NiFi
+#### Demo Ambari Service for NiFi - Deprecated
 ***Demo*** Ambari service for easily installing and managing NiFi on HDP cluster and viewing metrics.
 As of Sept 2016, the officially supported Ambari integration with Nifi is available as part of HDF stack. Details [here](http://docs.hortonworks.com/HDPDocuments/HDF2/HDF-2.0.0/bk_ambari-installation/content/index.html)
 
