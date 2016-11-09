@@ -87,6 +87,7 @@ else:
 
 master_configs = config['clusterHostInfo']
 nifi_master_hosts = master_configs['nifi_master_hosts']
+kafka_broker_host = str(master_configs['kafka_broker_hosts'][0])
 
 # detect if running in single (sandbox) box
 nifi_num_nodes = len(master_configs['nifi_master_hosts'])
