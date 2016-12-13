@@ -48,7 +48,8 @@ class Master(Script):
 
     #Execute('unzip '+params.temp_file+' -d ' + params.nifi_install_dir + ' >> ' + params.nifi_log_file, user=params.nifi_user)
     Execute('tar -xf '+params.temp_file+' -C '+ params.nifi_dir +' >> ' + params.nifi_log_file, user=params.nifi_user)
-    Execute('mv '+params.nifi_dir+'/*/*/* ' + params.nifi_dir, user=params.nifi_user)
+    #Execute('mv '+params.nifi_dir+'/*/*/* ' + params.nifi_dir, user=params.nifi_user)
+    Execute('mv '+params.nifi_dir+'/*/* ' + params.nifi_dir, user=params.nifi_user)    
     Execute('find '+params.nifi_dir+' -type d -empty -delete', user=params.nifi_user) 
 
     self.configure(env, True)  
