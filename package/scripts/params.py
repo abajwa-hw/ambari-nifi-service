@@ -34,7 +34,10 @@ config = Script.get_config()
 # snapshot_package='http://public-repo-1.hortonworks.com/HDF/2.0.0.0/HDF-2.0.0.0-579.tar.gz'
 
 # HDF 2.1
-snapshot_package='http://public-repo-1.hortonworks.com/HDF/centos6/2.x/updates/2.1.0.0/tars/nifi/nifi-1.1.0.2.1.0.0-165-bin.tar.gz'
+#snapshot_package='http://public-repo-1.hortonworks.com/HDF/centos6/2.x/updates/2.1.0.0/tars/nifi/nifi-1.1.0.2.1.0.0-165-bin.tar.gz'
+
+# HDF 2.1.2.0
+snapshot_package='https://public-repo-1.hortonworks.com/HDF/2.1.2.0/nifi-1.1.0.2.1.2.0-10-bin.tar.gz'
         
 # params from nifi-ambari-config
 nifi_install_dir = config['configurations']['nifi-ambari-config']['nifi.install_dir']

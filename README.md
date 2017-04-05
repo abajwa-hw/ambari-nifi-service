@@ -10,6 +10,7 @@ Features:
 - Includes metrics widgets from [here](https://cwiki.apache.org/confluence/display/NIFI/Ambari+Metrics)
 
 Updates:
+- Apr-05-2017: updated to support installing HDF 2.1.2.0 (Nifi 1.1) on Ambari 2.5/HDP 2.6
 - Dec-12-2016: updated to support installing HDF 2.1.0.0 (Nifi 1.1) on Ambari 2.4/HDP 2.5
 - Sept-14-2016: updated to support installing HDF 2.0.0.0 (Nifi 1.0) on Ambari 2.4/HDP 2.5
 - Jul-10-2016: updated to support installing HDF 1.2.0.0 on Ambari 2.4/HDP 2.5 tech preview build/VM
